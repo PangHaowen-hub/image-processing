@@ -2,7 +2,7 @@ import os
 import SimpleITK as sitk
 
 count = 0
-filepath = r'F:\my_lobe_data\after\LL\masks'
+filepath = r'F:\my_lobe_data\after\LU\masks'
 filenames = os.listdir(filepath)  # 读取nii文件夹
 print(filenames)
 
