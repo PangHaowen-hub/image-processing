@@ -19,14 +19,17 @@ def add_label(l_mask, r_mask, add_mask_path):
     r_mask_img_arr[l_mask_img_arr == 4] = 4
     r_mask_img_arr[l_mask_img_arr == 5] = 5
     new_mask_img = sitk.GetImageFromArray(r_mask_img_arr)
+    new_mask_img.SetDirection(r_mask_sitk_img.GetDirection())
+    new_mask_img.SetOrigin(r_mask_sitk_img.GetOrigin())
+    new_mask_img.SetSpacing(r_mask_sitk_img.GetSpacing())
     _, fullflname = os.path.split(l_mask)
     sitk.WriteImage(new_mask_img, add_mask_path + fullflname)
 
 
 if __name__ == '__main__':
-    l_mask_path = r'F:\my_lobe_data\after\RL\delete_right_predict'
-    r_mask_path = r'F:\my_lobe_data\after\RL\delete_left_predict'
-    add_mask_path = 'F:/my_lobe_data/after/RL/add_left_right'
+    l_mask_path = r'F:\my_lobe_data\after\RU\_left_predict'
+    r_mask_path = r'F:\my_lobe_data\after\RU\_right_predict'
+    add_mask_path = 'F:/my_lobe_data/after/RU/_final_predict/'
     l_mask = get_listdir(l_mask_path)
     l_mask.sort()
     r_mask = get_listdir(r_mask_path)

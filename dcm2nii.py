@@ -29,8 +29,7 @@ def dcm_nii(ct_path):
     new_mask_img1.SetDirection(ct_sitk_img.GetDirection())
     new_mask_img1.SetOrigin(ct_sitk_img.GetOrigin())
     new_mask_img1.SetSpacing(ct_sitk_img.GetSpacing())
-    # new_file_path = r'F:\my_lobe_data\after\LU'
-    new_file_path = r'C:\Users\Administrator\Desktop\temp'
+    new_file_path = r'F:\my_lobe_data\before\RU\imgs'
     path = os.path.join(new_file_path, patient_name + '.nii.gz')
     sitk.WriteImage(new_mask_img1, path)
 
@@ -38,8 +37,7 @@ def dcm_nii(ct_path):
 if __name__ == '__main__':
 
     # 原始数据
-    # ctdir = r'F:\lobe\lobe_data_lobe\LU_final\suit_GU_after\CT'
-    ctdir = r'C:\Users\Administrator\Desktop\temp'
+    ctdir = r'F:\lobe\lobe_data_lobe\RU_final\before\select_ct'
     ct_path = get_ct_file(ctdir)
 
     for i in range(len(ct_path)):

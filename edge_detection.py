@@ -1,3 +1,6 @@
+"""
+将两张mask边界画到原图上
+"""
 import cv2
 import os
 
