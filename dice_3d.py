@@ -12,17 +12,32 @@ def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回�
     return tmp_list
 
 
-def dice_3d(mask_path, pred_path):
+def dice_3d(mask_path, pred_path, label):
     mask_sitk_img = sitk.ReadImage(mask_path)
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
     pred_sitk_img = sitk.ReadImage(pred_path)
     pred_img_arr = sitk.GetArrayFromImage(pred_sitk_img)
     pred_img_arr = pred_img_arr.astype(np.uint16)
     # 求不同的肺叶dice修改此处
-    mask_img_arr[mask_img_arr != 5] = 0
-    mask_img_arr[mask_img_arr == 5] = 1
-    pred_img_arr[pred_img_arr != 5] = 0
-    pred_img_arr[pred_img_arr == 5] = 1
+    mask_img_arr[mask_img_arr != label] = 0
+    mask_img_arr[mask_img_arr == label] = 1
+    pred_img_arr[pred_img_arr != label] = 0
+    pred_img_arr[pred_img_arr == label] = 1
+
+    denominator = np.sum(mask_img_arr) + np.sum(pred_img_arr)
+    numerator = 2 * np.sum(mask_img_arr * pred_img_arr)
+    dice = numerator / denominator
+    print(dice)
+
+def dice_3d_lung(mask_path, pred_path):
+    mask_sitk_img = sitk.ReadImage(mask_path)
+    mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
+    pred_sitk_img = sitk.ReadImage(pred_path)
+    pred_img_arr = sitk.GetArrayFromImage(pred_sitk_img)
+    pred_img_arr = pred_img_arr.astype(np.uint16)
+    # 求不同的肺叶dice修改此处
+    mask_img_arr[mask_img_arr != 0] = 1
+    pred_img_arr[pred_img_arr != 0] = 1
 
     denominator = np.sum(mask_img_arr) + np.sum(pred_img_arr)
     numerator = 2 * np.sum(mask_img_arr * pred_img_arr)
@@ -31,11 +46,12 @@ def dice_3d(mask_path, pred_path):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_lobe_data\after\RU\test_mask'
-    pred_path = r'F:\my_lobe_data\after\RU\_final_predict'
+    mask_path = r'F:\my_lobe_data\before\all_lobe_512\test_mask\ground_truth'
+    pred_path = r'F:\my_lobe_data\before\all_lobe_512\test_mask\fold4'
     mask = get_listdir(mask_path)
     mask.sort()
     pred = get_listdir(pred_path)
     pred.sort()
     for i in range(len(mask)):
-        dice_3d(mask[i], pred[i])
+        # dice_3d(mask[i], pred[i], 5)
+        dice_3d_lung(mask[i], pred[i])
