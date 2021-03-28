@@ -17,6 +17,7 @@ def read_nii(mask1, mask2):
     mask_img_arr1 = sitk.GetArrayFromImage(mask_sitk_img1)
     mask_sitk_img2 = sitk.ReadImage(mask2)
     mask_img_arr2 = sitk.GetArrayFromImage(mask_sitk_img2)
+    x = mask_sitk_img2.GetDirection()
     print(mask_img_arr1.shape)
     print(mask_img_arr2.shape)
 
