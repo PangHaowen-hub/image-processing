@@ -6,7 +6,7 @@ import SimpleITK as sitk
 import os
 
 
-def get_listdir(path):  # 获取目录下所有png格式文件的地址，返回地址list
+def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回地址list
     tmp_list = []
     for file in os.listdir(path):
         if (os.path.splitext(file)[1] == '.gz'):
@@ -19,15 +19,19 @@ def add_label(mask, final_mask_path):
     mask_sitk_img = sitk.ReadImage(mask)
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
     # LL:4  LU:5
-    mask_img_arr[(mask_img_arr == 4) | (mask_img_arr == 5)] = 5
+    # mask_img_arr[(mask_img_arr == 4) | (mask_img_arr == 5)] = 5
+    mask_img_arr[mask_img_arr == 2] = 3
+    mask_img_arr[mask_img_arr == 1] = 2
     new_mask_img = sitk.GetImageFromArray(mask_img_arr)
+    new_mask_img.SetSpacing(mask_sitk_img.GetSpacing())
+    new_mask_img.SetOrigin(mask_sitk_img.GetOrigin())
     _, fullflname = os.path.split(mask)
     sitk.WriteImage(new_mask_img, final_mask_path + fullflname)
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_lobe_data\after\LU\Lobe_LU'
-    final_mask_path = 'F:/my_lobe_data/after/LU/Lobe_LU_final/'
+    mask_path = r'F:\my_lobe_data\after\RU\_right_predict'
+    final_mask_path = 'F:/my_lobe_data/after/RU/_right_predict/'
 
     mask = get_listdir(mask_path)
     mask.sort()

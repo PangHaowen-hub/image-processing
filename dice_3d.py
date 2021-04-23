@@ -13,6 +13,7 @@ def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回�
 
 
 def dice_3d(mask_path, pred_path, label):
+    # print(mask_path)
     mask_sitk_img = sitk.ReadImage(mask_path)
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
     pred_sitk_img = sitk.ReadImage(pred_path)
@@ -29,13 +30,14 @@ def dice_3d(mask_path, pred_path, label):
     dice = numerator / denominator
     print(dice)
 
+
 def dice_3d_lung(mask_path, pred_path):
+    # print(mask_path)
     mask_sitk_img = sitk.ReadImage(mask_path)
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
     pred_sitk_img = sitk.ReadImage(pred_path)
     pred_img_arr = sitk.GetArrayFromImage(pred_sitk_img)
     pred_img_arr = pred_img_arr.astype(np.uint16)
-    # 求不同的肺叶dice修改此处
     mask_img_arr[mask_img_arr != 0] = 1
     pred_img_arr[pred_img_arr != 0] = 1
 
@@ -46,8 +48,8 @@ def dice_3d_lung(mask_path, pred_path):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_lobe_data\after\LU\masks_test'
-    pred_path = r'F:\my_lobe_data\after\LU\Lobe_LU_final'
+    mask_path = r'F:\my_lobe_data\before\_LUNA16_test\mask_rename'
+    pred_path = r'F:\my_lobe_data\before\_LUNA16_test\predict'
     mask = get_listdir(mask_path)
     mask.sort()
     pred = get_listdir(pred_path)

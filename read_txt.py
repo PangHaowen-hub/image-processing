@@ -57,8 +57,8 @@ def read_dice(fold, s, txt_save_name):
 
 
 if __name__ == '__main__':
-    txt_name = 'D:/术前术后肺叶分割课题/lobe512/fold4/training_log_2021_3_8_21_12_58.txt'
-    txt_save_name = 'D:/术前术后肺叶分割课题/lobe512/fold4/'
+    txt_name = r'D:\术前术后肺叶分割课题\RU\fold4\training_log_2021_4_15_10_02_02.txt'
+    txt_save_name = r'D:/术前术后肺叶分割课题/RU/fold4/'
     fold = []
     with open(txt_name, "r") as f:
         for line in f.readlines():
