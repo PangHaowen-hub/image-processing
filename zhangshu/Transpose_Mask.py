@@ -34,6 +34,6 @@ def transposeMask(ct_path, mask_path):
 
 
 if __name__ == '__main__':
-    ct_path = r'F:\lobe\lobe_data_lobe\LL_final\after\select_ct\chenyuxiang_after'
-    mask_path = r'F:\my_lobe_data\after\LL\masks_rename\LL_000.nii.gz'
+    ct_path = r'F:\my_lobe_data\before\_SJ_test\img_dcm\zhaoguie'
+    mask_path = r'F:\LOLA11\01_10_nii\lola11-01.nii.gz'
     transposeMask(ct_path, mask_path)

@@ -25,7 +25,9 @@ def get_listdir_mhd(path):  # 获取目录下所有nrrd格式文件的地址，�
 
 def raw2nii(mhd_path, nii_path):
     mhd = sitk.ReadImage(mhd_path)
-    sitk.WriteImage(mhd, nii_path + '\\' + mhd_path.split('\\')[-1][:-3] + 'nii.gz')
+    temp = nii_path + '\\' + mhd_path.split('\\')[-1][:-3] + 'nii.gz'
+    # temp = mhd_path.split('\\')[-1][:-3] + 'nii.gz'
+    sitk.WriteImage(mhd, temp)
 
 
 if __name__ == '__main__':
@@ -53,8 +55,8 @@ if __name__ == '__main__':
     #     temp_path = os.path.join(nii_path, file.split('\\')[-1].split('_')[0] + '.nii.gz')
     #     sitk.WriteImage(new_mask_img1, temp_path)
 
-    mhd_path = r'F:\my_lobe_data\before\_LUNA16_test\img_raw'
-    nii_path = r'F:\my_lobe_data\before\_LUNA16_test\img'
+    mhd_path = r'F:\LOLA11\lola11'
+    nii_path = r'F:\LOLA11\lola11_nii'
     mhd_path_list = get_listdir_mhd(mhd_path)
     for i in mhd_path_list:
         raw2nii(i, nii_path)
