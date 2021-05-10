@@ -19,25 +19,12 @@ def dcm_nii(ct_path):
     dicom_names = ct_reader.GetGDCMSeriesFileNames(ct_path)
     ct_reader.SetFileNames(dicom_names)
     ct_sitk_img = ct_reader.Execute()
-    ct_img_arr = sitk.GetArrayFromImage(ct_sitk_img)
-
-    # 获取病人姓名
-    path1 = os.path.split(os.path.realpath(ct_path))[1]
-    patient_name = os.path.split(path1)[1]
-
-    new_mask_img1 = sitk.GetImageFromArray(ct_img_arr)
-    new_mask_img1.SetDirection(ct_sitk_img.GetDirection())
-    new_mask_img1.SetOrigin(ct_sitk_img.GetOrigin())
-    new_mask_img1.SetSpacing(ct_sitk_img.GetSpacing())
-    new_file_path = r'F:\my_lobe_data\after\_SJ_test\RU\nii'
-    path = os.path.join(new_file_path, patient_name + '.nii.gz')
-    sitk.WriteImage(new_mask_img1, path)
 
 
 if __name__ == '__main__':
 
-    # 原始数据，不能有中文
-    ctdir = r'F:\my_lobe_data\after\_SJ_test\RU\dicom'
+    # 原始数据
+    ctdir = r'F:\Double_gas_phase_syyxy\1\31200119009\1.2.840.113619.2.428.3.2831197974.665.1579215829.363'
     ct_path = get_ct_file(ctdir)
 
     for i in range(len(ct_path)):

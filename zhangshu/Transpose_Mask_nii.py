@@ -36,9 +36,9 @@ def transposeMask(ct_path, mask_path):
 
 
 if __name__ == '__main__':
-    ct_path = r'C:\Users\Administrator\Desktop\img_temp'
-    mask_path = r'C:\Users\Administrator\Desktop\temp'
-    ct = get_listdir(ct_path)
+    img_path = r'F:\my_lobe_data\after\_SJ_test\RL\nii'
+    mask_path = r'F:\my_lobe_data\after\_SJ_test\RL\mask'
+    ct = get_listdir(img_path)
     mask = get_listdir(mask_path)
     for i in range(len(ct)):
         transposeMask(ct[i], mask[i])

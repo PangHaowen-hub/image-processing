@@ -29,8 +29,8 @@ def add_label(mask, path):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_lobe_data\before\_SJ_test\lungmask_pred'
-    save_path = 'F:/my_lobe_data/before/_SJ_test/lungmask_pred/'
+    mask_path = r'F:\my_lobe_data\before\_lungmask_test'
+    save_path = 'F:/my_lobe_data/before/_lungmask_test/'
     mask = get_listdir(mask_path)
     mask.sort()
     for i in range(len(mask)):

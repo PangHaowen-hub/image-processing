@@ -23,15 +23,9 @@ def nii_raw(mask, path):
 
 
 if __name__ == '__main__':
-    mask_path = r'C:\Users\Administrator\Desktop\temp'
-    save_path = 'C:/Users/Administrator/Desktop/temp/'
+    mask_path = r'F:\LOLA11\predict_nii_rename'
+    save_path = 'F:/LOLA11/predict_raw/'
     mask = get_listdir(mask_path)
     mask.sort()
     for i in range(len(mask)):
         nii_raw(mask[i], save_path)
-
-
-
-
-
-
