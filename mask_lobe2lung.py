@@ -16,7 +16,7 @@ def add_label(mask, path):
     mask_sitk_img = sitk.ReadImage(mask)
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
     temp = copy.deepcopy(mask_img_arr)  # 深拷贝
-    mask_img_arr[temp != 0] = 0
+    mask_img_arr[temp == 2] = 3
     new_mask_img = sitk.GetImageFromArray(mask_img_arr)
     new_mask_img.SetSpacing(mask_sitk_img.GetSpacing())
     new_mask_img.SetOrigin(mask_sitk_img.GetOrigin())
@@ -26,8 +26,8 @@ def add_label(mask, path):
 
 # 将肺叶合并成肺区
 if __name__ == '__main__':
-    mask_path = r'C:\Users\Administrator\Desktop\RU\mask'
-    save_path = r'C:\Users\Administrator\Desktop\RU\mask/'
+    mask_path = r'F:\my_lobe_data\after\_SJ_test\RU\predict_right'
+    save_path = r'F:\my_lobe_data\after\_SJ_test\RU\predict_right/'
     mask = get_listdir(mask_path)
     mask.sort()
     for i in range(len(mask)):
