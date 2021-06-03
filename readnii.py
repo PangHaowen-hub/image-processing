@@ -6,7 +6,7 @@ import copy
 def get_listdir(path):  # 获取目录下所有png格式文件的地址，返回地址list
     tmp_list = []
     for file in os.listdir(path):
-        if (os.path.splitext(file)[1] == '.gz'):
+        if (os.path.splitext(file)[1] == '.nii'):
             file_path = os.path.join(path, file)
             tmp_list.append(file_path)
     return tmp_list
@@ -24,8 +24,8 @@ def read_nii(mask1, mask2):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\lobe\lobe_data_lobe\RL_final\before\mask'
-    mask2_path = r'F:\my_lobe_data\before\RL\masks'
+    mask_path = r'F:\segment_test\1'
+    mask2_path = r'F:\segment_test\2'
 
     mask = get_listdir(mask_path)
     mask.sort()
