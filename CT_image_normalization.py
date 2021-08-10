@@ -30,8 +30,8 @@ def add_label(img, img_save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'F:\segment_registration\Registration\320_512_512\160_256_256\imgs'
-    save_path = r'F:\segment_registration\Registration\320_512_512\160_256_256\imgs_norm'
+    img_path = r'F:\segment_registration\Registration\320_512_512\80_128_128\imgs'
+    save_path = r'F:\segment_registration\Registration\320_512_512\80_128_128\imgs_norm'
 
     img_list = get_listdir(img_path)
     img_list.sort()
