@@ -6,29 +6,32 @@ import copy
 def get_listdir(path):  # 获取目录下所有png格式文件的地址，返回地址list
     tmp_list = []
     for file in os.listdir(path):
-        if (os.path.splitext(file)[1] == '.gz'):
+        if os.path.splitext(file)[1] == '.gz':
             file_path = os.path.join(path, file)
             tmp_list.append(file_path)
     return tmp_list
 
 
 def add_label(mask, path):
-    l_mask_sitk_img = sitk.ReadImage(mask)
-    l_mask_img_arr = sitk.GetArrayFromImage(l_mask_sitk_img)
-    r_mask_sitk_img = sitk.ReadImage(mask)
-    r_mask_img_arr = sitk.GetArrayFromImage(r_mask_sitk_img)
-    r_mask_img_arr[l_mask_img_arr == 5] = 4
-    new_mask_img = sitk.GetImageFromArray(r_mask_img_arr)
-    new_mask_img.SetDirection(r_mask_sitk_img.GetDirection())
-    new_mask_img.SetOrigin(r_mask_sitk_img.GetOrigin())
-    new_mask_img.SetSpacing(r_mask_sitk_img.GetSpacing())
+    mask_sitk_img = sitk.ReadImage(mask)
+    mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
+    b = copy.deepcopy(mask_img_arr)
+    mask_img_arr[b == 3] = 1
+    mask_img_arr[b == 4] = 2
+    mask_img_arr[b == 5] = 3
+    mask_img_arr[b == 1] = 4
+    mask_img_arr[b == 2] = 5
+    new_mask_img = sitk.GetImageFromArray(mask_img_arr)
+    new_mask_img.SetDirection(mask_sitk_img.GetDirection())
+    new_mask_img.SetOrigin(mask_sitk_img.GetOrigin())
+    new_mask_img.SetSpacing(mask_sitk_img.GetSpacing())
     _, fullflname = os.path.split(mask)
-    sitk.WriteImage(new_mask_img, path + fullflname)
+    sitk.WriteImage(new_mask_img, os.path.join(path, fullflname))
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_lobe_data\after\_SJ_test\LL\predict_lobe'
-    save_path = r'F:\my_lobe_data\after\_SJ_test\LL\predict_final/'
+    mask_path = r'F:\my_lobe_data\before\_LUNA16_test\lungmask_predict'
+    save_path = r'F:\my_lobe_data\before\_LUNA16_test\lungmask_predict_temp'
     mask = get_listdir(mask_path)
     mask.sort()
     for i in range(len(mask)):

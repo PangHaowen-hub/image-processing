@@ -1,8 +1,8 @@
 import imageio
 import numpy as np
-import imgaug as ia
-import imgaug.augmenters as iaa
-from imgaug.augmentables.segmaps import SegmentationMapsOnImage
+import imgaug_img_mask as ia
+import imgaug_img_mask.augmenters as iaa
+from imgaug_img_mask.augmentables.segmaps import SegmentationMapsOnImage
 from PIL import Image
 import os
 

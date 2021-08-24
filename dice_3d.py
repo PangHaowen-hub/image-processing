@@ -48,8 +48,8 @@ def dice_3d_lung(mask_path, pred_path):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_lobe_data\after\_SJ_test\RU\mask'
-    pred_path = r'F:\my_lobe_data\after\_SJ_test\RU\predict_final'
+    mask_path = r'F:\my_lobe_data\before\_LUNA16_test\mask_rename'
+    pred_path = r'F:\my_lobe_data\before\_LUNA16_test\lungmask_LUNA16\lungmask_predict'
     mask = get_listdir(mask_path)
     mask.sort()
     pred = get_listdir(pred_path)
