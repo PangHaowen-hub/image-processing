@@ -11,8 +11,8 @@ def get_listdir(path, format):
     return tmp_list
 
 
-path = r'E:\CAS\github_code\AttaNet_1280_720\data\satellite_gray\satellite_original\val'
-img_list = get_listdir(path, '.jpg')
+path = r'E:\CAS\github_code\AttaNet_1280\test_data'
+img_list = get_listdir(path, '.png')
 desired_size = 1280
 for i in img_list:
     _, fullflname = os.path.split(i)
@@ -32,4 +32,4 @@ for i in img_list:
     left, right = delta_w // 2, delta_w - (delta_w // 2)
 
     new_im = cv2.copyMakeBorder(im, top, bottom, left, right, cv2.BORDER_CONSTANT, value=0)
-    cv2.imwrite(os.path.join('E:/CAS/github_code/AttaNet_1280_720/data/satellite_gray/satellite_1280/images/val', fullflname)[:-4] + '.jpg', new_im)
+    cv2.imwrite(os.path.join(r'E:\CAS\github_code\AttaNet_1280\test_data_2', fullflname)[:-4] + '.jpg', new_im)
