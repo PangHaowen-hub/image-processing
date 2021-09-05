@@ -1,5 +1,6 @@
 import SimpleITK as sitk
 import os
+from tqdm import trange
 
 
 def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回地址list
@@ -30,10 +31,10 @@ def add_label(img, img_save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'F:\segment_registration\Registration\320_512_512\80_128_128\imgs'
-    save_path = r'F:\segment_registration\Registration\320_512_512\80_128_128\imgs_norm'
+    img_path = r'F:\segment_registration\Registration\original_image\RL_lobe'
+    save_path = r'F:\segment_registration\Registration\original_image\RL_lobe_norm'
 
     img_list = get_listdir(img_path)
     img_list.sort()
-    for i in range(len(img_list)):
+    for i in trange(len(img_list)):
         add_label(img_list[i], save_path)
