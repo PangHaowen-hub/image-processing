@@ -22,14 +22,14 @@ def add_label(img, mask, path):
     new_mask_img.SetOrigin(img_sitk_img.GetOrigin())
     new_mask_img.SetSpacing(img_sitk_img.GetSpacing())
     _, fullflname = os.path.split(mask)
-    sitk.WriteImage(new_mask_img, path + fullflname)
+    sitk.WriteImage(new_mask_img, os.path.join(path, fullflname))
 
 
 # 修正3d slicer不能读取的mask
 if __name__ == '__main__':
-    img_path = r'F:\my_lobe_data\paper_draw\1'
-    mask_path = r'F:\my_lobe_data\paper_draw\2'
-    save_path = r'F:\my_lobe_data\paper_draw'
+    img_path = r'F:\my_lobe_data\before\all_lobe_512\imgs_rename'
+    mask_path = r'F:\my_lobe_data\before\all_lobe_512\masks_rename'
+    save_path = r'F:\my_lobe_data\before\all_lobe_512\masks_rename'
     img = get_listdir(img_path)
     mask = get_listdir(mask_path)
     img.sort()

@@ -15,10 +15,11 @@ def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回�
 def delete_label(mask_path):
     mask_sitk_img = sitk.ReadImage(mask_path)
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
-    # mask_img_arr[(mask_img_arr == 4) | (mask_img_arr == 5)] = 0
-    mask_img_arr[mask_img_arr == 2] = 3
-    mask_img_arr[mask_img_arr == 1] = 2
-    new_mask_img = sitk.GetImageFromArray(mask_img_arr)
+    new_arr = np.zeros_like(mask_img_arr)
+    new_arr[mask_img_arr == 1305] = 1
+    new_arr[mask_img_arr == 64] = 2
+    new_arr[mask_img_arr == 392] = 3
+    new_mask_img = sitk.GetImageFromArray(new_arr)
     new_mask_img.SetDirection(mask_sitk_img.GetDirection())
     new_mask_img.SetSpacing(mask_sitk_img.GetSpacing())
     new_mask_img.SetOrigin(mask_sitk_img.GetOrigin())
@@ -26,7 +27,5 @@ def delete_label(mask_path):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_lobe_data\after\RU\_right_predict'
-    mask = get_listdir(mask_path)
-    for i in range(len(mask)):
-        delete_label(mask[i])
+    mask_path = r'F:\segment_registration\segmentation\26_30\030\CT8_mask.nii.gz'
+    delete_label(mask_path)

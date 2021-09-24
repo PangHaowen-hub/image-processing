@@ -14,13 +14,12 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    l_mask_path = r'F:\segment_registration\Registration\original_image\RL_lobe'
+    l_mask_path = r'F:\my_lobe_data\before\all_lobe_512\imgs_rename'
     l_mask = get_listdir(l_mask_path)
     l_mask.sort()
-    l = []
     for i in l_mask:
         sitk_img = sitk.ReadImage(i)
         img_arr = sitk.GetArrayFromImage(sitk_img)
-        l.append(img_arr.shape)
-    shape = np.asarray(l)
-    print(np.max(shape, 0))
+        print(i)
+        print(img_arr.shape)
+        print(sitk_img.GetSpacing())

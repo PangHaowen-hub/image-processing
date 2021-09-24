@@ -29,7 +29,7 @@ def dcm_nii(ct_path):
     new_mask_img1.SetDirection(ct_sitk_img.GetDirection())
     new_mask_img1.SetOrigin(ct_sitk_img.GetOrigin())
     new_mask_img1.SetSpacing(ct_sitk_img.GetSpacing())
-    new_file_path = r'D:\github_code\Airway-master\example_data\my_data'
+    new_file_path = r'F:\segment_registration'
     path = os.path.join(new_file_path, patient_name + '.nii.gz')
     sitk.WriteImage(new_mask_img1, path)
 
@@ -37,7 +37,7 @@ def dcm_nii(ct_path):
 if __name__ == '__main__':
 
     # 原始数据，不能有中文
-    ctdir = r'D:\github_code\Airway-master\example_data\my_data\airway'
+    ctdir = r'F:\lobe\lobe_data_lobe\LL_final\after\select_ct'
     ct_path = get_ct_file(ctdir)
 
     for i in range(len(ct_path)):

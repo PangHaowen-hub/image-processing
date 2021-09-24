@@ -1,4 +1,5 @@
 import SimpleITK as sitk
+from tqdm import trange
 import os
 
 
@@ -23,16 +24,16 @@ def add_label(l_mask, r_mask, add_mask_path):
     new_mask_img.SetOrigin(r_mask_sitk_img.GetOrigin())
     new_mask_img.SetSpacing(r_mask_sitk_img.GetSpacing())
     _, fullflname = os.path.split(l_mask)
-    sitk.WriteImage(new_mask_img, add_mask_path + fullflname)
+    sitk.WriteImage(new_mask_img, os.path.join(add_mask_path, fullflname))
 
 
 if __name__ == '__main__':
-    l_mask_path = r'F:\my_lobe_data\after\_SJ_test\RU\predict_left'
-    r_mask_path = r'F:\my_lobe_data\after\_SJ_test\RU\predict_right'
-    add_mask_path = r'F:\my_lobe_data\after\_SJ_test\RU\predict_final/'
+    l_mask_path = r'F:\my_lobe_data\after\RM\masks_UNet_pred\_left_predict'
+    r_mask_path = r'F:\my_lobe_data\after\RM\masks_UNet_pred\_right_predict'
+    add_mask_path = r'F:\my_lobe_data\after\RM\masks_UNet_pred\_final_predict'
     l_mask = get_listdir(l_mask_path)
     l_mask.sort()
     r_mask = get_listdir(r_mask_path)
     r_mask.sort()
-    for i in range(len(l_mask)):
+    for i in trange(len(l_mask)):
         add_label(l_mask[i], r_mask[i], add_mask_path)
