@@ -1,7 +1,7 @@
 import SimpleITK as sitk
 import os
 import copy
-
+import tqdm
 
 def get_listdir(path):  # 获取目录下所有png格式文件的地址，返回地址list
     tmp_list = []
@@ -27,12 +27,12 @@ def add_label(img, mask, path):
 
 # 修正3d slicer不能读取的mask
 if __name__ == '__main__':
-    img_path = r'F:\my_lobe_data\before\all_lobe_512\imgs_rename'
-    mask_path = r'F:\my_lobe_data\before\all_lobe_512\masks_rename'
-    save_path = r'F:\my_lobe_data\before\all_lobe_512\masks_rename'
+    img_path = r'G:\my_lobe_data\after\RL\imgs_rename'
+    mask_path = r'G:\my_lobe_data\after\RL\delete_left_labe_mask'
+    save_path = r'G:\my_lobe_data\after\RL\delete_left_labe_mask'
     img = get_listdir(img_path)
     mask = get_listdir(mask_path)
     img.sort()
     mask.sort()
-    for i in range(len(mask)):
+    for i in tqdm.trange(len(mask)):
         add_label(img[i], mask[i], save_path)

@@ -12,21 +12,22 @@ def get_listdir(path):  # 获取目录下所有png格式文件的地址，返回
     return tmp_list
 
 
-def add_label(mask):
+def add_label(mask, save_path):
     mask_sitk_img = sitk.ReadImage(mask)
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
     temp = copy.deepcopy(mask_img_arr)
-    mask_img_arr[temp == 2] = 3
-
+    mask_img_arr[temp == 4] = 5
     new_mask_img = sitk.GetImageFromArray(mask_img_arr)
     new_mask_img.SetDirection(mask_sitk_img.GetDirection())
     new_mask_img.SetOrigin(mask_sitk_img.GetOrigin())
     new_mask_img.SetSpacing(mask_sitk_img.GetSpacing())
-    sitk.WriteImage(new_mask_img, mask)
+    _, fullflname = os.path.split(mask)
+    sitk.WriteImage(new_mask_img, os.path.join(save_path, fullflname))
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_lobe_data\after\RM\masks_UNet_pred\_right_predict'
+    mask_path = r'F:\my_code\segmentation_3d\data_3d\LU\pred'
+    save_path = r'F:\my_code\segmentation_3d\data_3d\LU\pred'
     mask_list = get_listdir(mask_path)
     for i in mask_list:
-        add_label(i)
+        add_label(i, save_path)

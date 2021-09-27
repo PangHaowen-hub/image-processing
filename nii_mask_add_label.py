@@ -28,9 +28,9 @@ def add_label(l_mask, r_mask, add_mask_path):
 
 
 if __name__ == '__main__':
-    l_mask_path = r'F:\my_lobe_data\after\RM\masks_UNet_pred\_left_predict'
-    r_mask_path = r'F:\my_lobe_data\after\RM\masks_UNet_pred\_right_predict'
-    add_mask_path = r'F:\my_lobe_data\after\RM\masks_UNet_pred\_final_predict'
+    l_mask_path = r'F:\my_lobe_data\after\RU\masks_UNet_pred\_left_predict'
+    r_mask_path = r'F:\my_lobe_data\after\RU\masks_UNet_pred\_right_predict'
+    add_mask_path = r'F:\my_lobe_data\after\RU\masks_UNet_pred\_final_predict'
     l_mask = get_listdir(l_mask_path)
     l_mask.sort()
     r_mask = get_listdir(r_mask_path)

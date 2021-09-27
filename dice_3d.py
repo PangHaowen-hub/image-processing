@@ -3,6 +3,7 @@ import numpy as np
 import os
 from tqdm import trange
 
+
 def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回地址list
     tmp_list = []
     for file in os.listdir(path):
@@ -50,8 +51,8 @@ def dice_3d_lung(mask_path, pred_path):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_lobe_data\after\RM\test_mask'
-    pred_path = r'F:\my_lobe_data\after\RM\masks_UNet_pred\_final_predict'
+    mask_path = r'G:\my_lobe_data\after\LU\masks_rename'
+    pred_path = r'F:\my_code\segmentation_3d\data_3d\LU\pred'
     mask = get_listdir(mask_path)
     mask.sort()
     pred = get_listdir(pred_path)
