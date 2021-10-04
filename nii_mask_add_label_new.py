@@ -17,20 +17,24 @@ def add_label(l_mask, r_mask, add_mask_path):
     l_mask_img_arr = sitk.GetArrayFromImage(l_mask_sitk_img)
     r_mask_sitk_img = sitk.ReadImage(r_mask)
     r_mask_img_arr = sitk.GetArrayFromImage(r_mask_sitk_img)
-    r_mask_img_arr[l_mask_img_arr == 4] = 4
-    r_mask_img_arr[l_mask_img_arr == 5] = 5
-    new_mask_img = sitk.GetImageFromArray(r_mask_img_arr)
-    new_mask_img.SetDirection(r_mask_sitk_img.GetDirection())
-    new_mask_img.SetOrigin(r_mask_sitk_img.GetOrigin())
-    new_mask_img.SetSpacing(r_mask_sitk_img.GetSpacing())
+    l_mask_img_arr[l_mask_img_arr == 1] = 0
+    l_mask_img_arr[l_mask_img_arr == 2] = 0
+    l_mask_img_arr[l_mask_img_arr == 3] = 0
+
+    l_mask_img_arr[r_mask_img_arr == 1] = 1
+    l_mask_img_arr[r_mask_img_arr == 2] = 2
+    new_mask_img = sitk.GetImageFromArray(l_mask_img_arr)
+    new_mask_img.SetDirection(l_mask_sitk_img.GetDirection())
+    new_mask_img.SetOrigin(l_mask_sitk_img.GetOrigin())
+    new_mask_img.SetSpacing(l_mask_sitk_img.GetSpacing())
     _, fullflname = os.path.split(l_mask)
     sitk.WriteImage(new_mask_img, os.path.join(add_mask_path, fullflname))
 
 
 if __name__ == '__main__':
-    l_mask_path = r'G:\Lobectomy\shengjing\RLL_nii\RL_after_test_left_post'
-    r_mask_path = r'G:\Lobectomy\shengjing\RLL_nii\RL_after_test_right'
-    add_mask_path = r'G:\Lobectomy\shengjing\RLL_nii\RL_after_test_all'
+    l_mask_path = r'G:\Lobectomy\shengjing\RLL_nii\RL_after_test_all_temp\left'
+    r_mask_path = r'G:\Lobectomy\shengjing\RLL_nii\RL_after_test_all_temp\right'
+    add_mask_path = r'G:\Lobectomy\shengjing\RLL_nii\RL_after_test_all_temp'
     l_mask = get_listdir(l_mask_path)
     l_mask.sort()
     r_mask = get_listdir(r_mask_path)

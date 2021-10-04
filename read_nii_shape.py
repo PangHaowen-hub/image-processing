@@ -14,7 +14,7 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    l_mask_path = r'F:\my_lobe_data\before\all_lobe_512\imgs_rename'
+    l_mask_path = r'G:\Lobectomy\dalian\RUL\after\mask'
     l_mask = get_listdir(l_mask_path)
     l_mask.sort()
     for i in l_mask:

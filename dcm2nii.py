@@ -21,6 +21,7 @@ def dcm_nii(ct_path, save_path):
     ct_reader.SetFileNames(dicom_names)
     ct_sitk_img = ct_reader.Execute()
     ct_img_arr = sitk.GetArrayFromImage(ct_sitk_img)
+    print(ct_img_arr.shape)
 
     # 获取病人姓名
     name = os.path.split(ct_path)[1]
@@ -36,8 +37,8 @@ def dcm_nii(ct_path, save_path):
 if __name__ == '__main__':
 
     # 原始数据，不能有中文
-    main_path = r'G:\Lobectomy\LLL'
-    save_path = r'G:\Lobectomy\LLL'
+    main_path = r'G:\Lobectomy\dalian\RUL\before\ct'
+    save_path = r'G:\Lobectomy\dalian\RUL\before\ct'
     ct_path = get_ct_file(main_path)
     ct_path.sort()
 
