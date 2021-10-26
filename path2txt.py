@@ -5,13 +5,13 @@ def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回�
     tmp_list = []
     for file in os.listdir(path):
         if os.path.splitext(file)[1] == '.gz':
-            file_path = path + file
+            file_path = os.path.join(path, file)
             tmp_list.append(file_path)
     return tmp_list
 
 
-save_path = r"F:\segment_registration\Registration\original_image\test.txt"
-dir_path = r"F:/segment_registration/Registration/original_image/RL_lobe_norm/"  # 文件路径
+save_path = r"G:\EMPIRE10\img_nii.txt"
+dir_path = r"G:\EMPIRE10\img_nii"  # 文件路径
 path_list = get_listdir(dir_path)  # 遍历整个文件夹下的文件name并返回一个列表
 path_list.sort()
 

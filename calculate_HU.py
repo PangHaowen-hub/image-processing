@@ -25,12 +25,12 @@ def volume(img, mask):
     voxel_volume = Spacing[0] * Spacing[1] * Spacing[2]
 
     save_arr = np.zeros_like(img_arr)
-    save_arr[img_arr < -951] = 1  # 低密度
+    save_arr[img_arr <= -951] = 1  # 低密度
     temp = np.zeros_like(img_arr)
     temp[img_arr > -950] += 1
     temp[img_arr < -701] += 1
     save_arr[temp == 2] = 2  # 中密度
-    save_arr[img_arr > -700] = 3  # 高密度
+    save_arr[img_arr >= -700] = 3  # 高密度
 
     lobe1 = copy.deepcopy(save_arr)
     lobe1[mask_arr != 1] = 0
@@ -74,18 +74,18 @@ def volume(img, mask):
 
 
 if __name__ == '__main__':
-    img_path = r'G:\Lobectomy\dalian\LLL\before\img_nii'
-    mask_path = r'G:\Lobectomy\dalian\LLL\before\mask'
+    img_path = r'G:\Lobectomy\shengjing\RUL_nii\before_rename'
+    mask_path = r'G:\Lobectomy\shengjing\RUL_nii\RU_before_test_all'
     img_list = get_listdir(img_path)
     mask_list = get_listdir(mask_path)
     img_list.sort()
     mask_list.sort()
     workbook = xlwt.Workbook(encoding='utf-8')  # 创建一个workbook 设置编码
-    worksheet = workbook.add_sheet('LL_before')  # 创建一个worksheet
+    worksheet = workbook.add_sheet('RU_before')  # 创建一个worksheet
     for i in tqdm.trange(len(img_list)):
         hu_volume = volume(img_list[i], mask_list[i])
         worksheet.write(i, 0, label=mask_list[i])  # 参数对应 行, 列, 值
         for j in range(15):
             worksheet.write(i, j + 1, label=hu_volume[j])
 
-    workbook.save(r'G:\Lobectomy\dalian\LLL\before\LL_before_HU.xls')  # 保存
+    workbook.save(r'G:\Lobectomy\shengjing\RUL_nii\RU_before_HU.xls')  # 保存

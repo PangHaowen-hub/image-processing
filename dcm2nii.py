@@ -37,8 +37,8 @@ def dcm_nii(ct_path, save_path):
 if __name__ == '__main__':
 
     # 原始数据，不能有中文
-    main_path = r'G:\Lobectomy\dalian\RUL\before\ct'
-    save_path = r'G:\Lobectomy\dalian\RUL\before\ct'
+    main_path = r'J:\data_syyxy\data2'
+    save_path = r'J:\data_syyxy\data2_nii'
     ct_path = get_ct_file(main_path)
     ct_path.sort()
 

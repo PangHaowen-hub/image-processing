@@ -46,19 +46,19 @@ def dice_3d_lung(mask_path, pred_path):
     denominator = np.sum(mask_img_arr) + np.sum(pred_img_arr)
     numerator = 2 * np.sum(mask_img_arr * pred_img_arr)
     dice = numerator / denominator
-    # print(dice)
+    print(dice)
     return dice
 
 
 if __name__ == '__main__':
-    mask_path = r'G:\my_lobe_data\after\RM\test_mask'
-    pred_path = r'F:\my_code\segmentation_3d\data_3d\test\RM\pred_right_unet3d'
+    mask_path = r'G:\my_lobe_data\after\RU\test_mask'
+    pred_path = r'G:\my_lobe_data\after\RU\masks_RUL4_pred'
     mask = get_listdir(mask_path)
     mask.sort()
     pred = get_listdir(pred_path)
     pred.sort()
     dice = 0
     for i in trange(len(mask)):
-        dice += dice_3d(mask[i], pred[i], 3)
+        dice += dice_3d(mask[i], pred[i], 5)
         # dice_3d_lung(mask[i], pred[i])
     print(dice / len(mask))

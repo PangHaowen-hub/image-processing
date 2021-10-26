@@ -28,9 +28,9 @@ def add_label(l_mask, r_mask, add_mask_path):
 
 
 if __name__ == '__main__':
-    l_mask_path = r'G:\Lobectomy\shengjing\RLL_nii\RL_after_test_left_post'
-    r_mask_path = r'G:\Lobectomy\shengjing\RLL_nii\RL_after_test_right'
-    add_mask_path = r'G:\Lobectomy\shengjing\RLL_nii\RL_after_test_all'
+    l_mask_path = r'F:\my_code\segmentation_3d\data_SJ\after\pred_3d\RL\VNet\left'
+    r_mask_path = r'F:\my_code\segmentation_3d\data_SJ\after\pred_3d\RL\VNet\right'
+    add_mask_path = r'F:\my_code\segmentation_3d\data_SJ\after\pred_3d\RL\VNet'
     l_mask = get_listdir(l_mask_path)
     l_mask.sort()
     r_mask = get_listdir(r_mask_path)
