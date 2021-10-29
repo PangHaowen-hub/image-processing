@@ -10,8 +10,8 @@ def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回�
     return tmp_list
 
 
-save_path = r"G:\EMPIRE10\img_nii.txt"
-dir_path = r"G:\EMPIRE10\img_nii"  # 文件路径
+save_path = r"G:\lobe_registration\LL\before\warped\img_nii2.txt"
+dir_path = r"G:\lobe_registration\LL\before\warped"  # 文件路径
 path_list = get_listdir(dir_path)  # 遍历整个文件夹下的文件name并返回一个列表
 path_list.sort()
 

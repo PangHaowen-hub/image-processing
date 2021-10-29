@@ -14,7 +14,7 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    l_mask_path = r'G:\Lobectomy\dalian\RUL\after\mask'
+    l_mask_path = r'G:\lobe_registration\LL\before\warped_resample'
     l_mask = get_listdir(l_mask_path)
     l_mask.sort()
     for i in l_mask:

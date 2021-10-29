@@ -23,7 +23,7 @@ def nii2png(img, save_path):
     img_arr[img_arr < MIN_BOUND] = MIN_BOUND
     img_arr = (img_arr - MIN_BOUND) / (MAX_BOUND - MIN_BOUND) * 255
     _, fullflname = os.path.split(img)
-    path = os.path.join(save_path, fullflname[:-7])  # -7是图像名，-12是mask图
+    path = os.path.join(save_path, fullflname[:-7])
     os.mkdir(path)
     for i in trange(img_arr.shape[0]):
         temp = img_arr[i, :, :].astype(np.uint8)
@@ -32,8 +32,8 @@ def nii2png(img, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'F:\my_code\segmentation_3d\data\images\test\SJ\after'
-    save_path = r'F:\my_code\segmentation_3d\data\images\test\SJ\after'
+    img_path = r'G:\my_lobe_data\before\all_lobe_512\imgs_rename'
+    save_path = r'F:\github_code\PyTorch-GAN-master\data\CT'
     img_list = get_listdir(img_path)
     img_list.sort()
     for i in trange(len(img_list)):

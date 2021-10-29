@@ -1,7 +1,7 @@
 import SimpleITK as sitk
 import os
 import copy
-
+import tqdm
 
 def get_listdir(path):  # 获取目录下所有png格式文件的地址，返回地址list
     tmp_list = []
@@ -17,7 +17,7 @@ def add_label(mask, save_path):
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
     temp = copy.deepcopy(mask_img_arr)
     # if 6 in mask_img_arr:
-    # mask_img_arr[temp == 1] = 2
+    mask_img_arr[temp == 0] = -1024
     # mask_img_arr[temp == 2] = 3
     # mask_img_arr[temp == 3] = 4
     # mask_img_arr[temp == 4] = 5
@@ -32,9 +32,9 @@ def add_label(mask, save_path):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_code\segmentation_3d\data_SJ\after\pred_3d\RL\3dUNet\right'
-    save_path = r'F:\my_code\segmentation_3d\data_SJ\after\pred_3d\RL\3dUNet\right'
+    mask_path = r'G:\lobe_registration\LL\before\warped'
+    save_path = r'G:\lobe_registration\LL\before\warped'
     mask_list = get_listdir(mask_path)
     mask_list.sort()
-    for i in mask_list:
+    for i in tqdm.tqdm(mask_list):
         add_label(i, save_path)

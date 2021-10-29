@@ -1,6 +1,7 @@
 import SimpleITK as sitk
 import numpy as np
 import os
+import tqdm
 
 
 def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回地址list
@@ -12,39 +13,32 @@ def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回�
     return tmp_list
 
 
-def delete_label(mask_path):
-    mask_sitk_img = sitk.ReadImage(mask_path)
+def resample(img_path, save_path):
+    mask_sitk_img = sitk.ReadImage(img_path)
     img_shape = mask_sitk_img.GetSize()
     img_spacing = mask_sitk_img.GetSpacing()
-
     # 设置一个Filter
     resample = sitk.ResampleImageFilter()
     # 设置插值方式
     resample.SetInterpolator(sitk.sitkNearestNeighbor)
-
     # 默认像素值
     resample.SetDefaultPixelValue(0)
-
     newspacing = [0.8, 0.8, 0.8]
     resample.SetOutputSpacing(newspacing)
-
     resample.SetOutputOrigin(mask_sitk_img.GetOrigin())
-
     resample.SetOutputDirection(mask_sitk_img.GetDirection())
-
     new_size = np.asarray(img_shape) * np.asarray(img_spacing) / np.asarray(newspacing)
     new_size = new_size.astype(int).tolist()
     resample.SetSize(new_size)
-
     new = resample.Execute(mask_sitk_img)
-    sitk.WriteImage(new, r'D:\github_code\Airway-master\example_data\my_data\lobe_mask_resample.nii.gz')
+    _, fullflname = os.path.split(img_path)
+    sitk.WriteImage(new, os.path.join(save_path, fullflname))
 
 
 if __name__ == '__main__':
-    mask_path = r'D:\github_code\Airway-master\example_data\my_data\lobe_mask.nii.gz'
-    delete_label(mask_path)
-
-
-
-
-
+    img_path = r'G:\lobe_registration\LL\after\LU_Lobe'
+    save_path = r'G:\lobe_registration\LL\after\LU_Lobe_resample'
+    img_list = get_listdir(img_path)
+    img_list.sort()
+    for i in tqdm.tqdm(img_list):
+        resample(i, save_path)
