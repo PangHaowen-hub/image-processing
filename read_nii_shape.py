@@ -14,7 +14,7 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    l_mask_path = r'G:\lobe_registration\LL\after\LU_Lobe_resample_pad'
+    l_mask_path = r'G:\CT2CECT\cect'
     l_mask = get_listdir(l_mask_path)
     l_mask.sort()
     shape = []
@@ -24,5 +24,5 @@ if __name__ == '__main__':
         shape.append(img_arr.shape)
         print(i)
         print(img_arr.shape)
-        print(sitk_img.GetSpacing())
-    print(max(shape))
+        # print(sitk_img.GetSpacing())
+    # print(max(shape))

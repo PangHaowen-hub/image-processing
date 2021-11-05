@@ -14,7 +14,7 @@ def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回�
     return tmp_list
 
 
-def nii2png(img, save_path):
+def nii2png(img, save_path):  # 每个nii一个文件夹
     sitk_img = sitk.ReadImage(img)
     img_arr = sitk.GetArrayFromImage(sitk_img)
     MIN_BOUND = -1000.0
@@ -31,9 +31,24 @@ def nii2png(img, save_path):
         img_pil.save(os.path.join(path, str(i).rjust(3, '0') + '.png'))
 
 
+def nii2png_path(img, save_path):  # 所有图像同一个文件夹
+    sitk_img = sitk.ReadImage(img)
+    img_arr = sitk.GetArrayFromImage(sitk_img)
+    MIN_BOUND = -1000.0
+    MAX_BOUND = 400.0
+    img_arr[img_arr > MAX_BOUND] = MAX_BOUND
+    img_arr[img_arr < MIN_BOUND] = MIN_BOUND
+    img_arr = (img_arr - MIN_BOUND) / (MAX_BOUND - MIN_BOUND) * 255
+    _, fullflname = os.path.split(img)
+    for i in trange(img_arr.shape[0]):
+        temp = img_arr[i, :, :].astype(np.uint8)
+        img_pil = Image.fromarray(temp)
+        img_pil.save(os.path.join(save_path, fullflname + str(i).rjust(5, '0') + '.png'))
+
+
 if __name__ == '__main__':
-    img_path = r'G:\my_lobe_data\before\all_lobe_512\imgs_rename'
-    save_path = r'F:\github_code\PyTorch-GAN-master\data\CT'
+    img_path = r'G:\CT2CECT\ct'
+    save_path = r'F:\my_code\cyclegan\data\CT2CECT\train\A'
     img_list = get_listdir(img_path)
     img_list.sort()
     for i in trange(len(img_list)):
