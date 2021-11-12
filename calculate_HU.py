@@ -88,4 +88,4 @@ if __name__ == '__main__':
         for j in range(15):
             worksheet.write(i, j + 1, label=hu_volume[j])
 
-    workbook.save(r'G:\Lobectomy\shengjing\RUL_nii\RU_before_HU.xls')  # 保存
+    workbook.save(r'G:\Lobectomy\shengjing\RUL_nii\RU_before_HU_1mm.xls')  # 保存

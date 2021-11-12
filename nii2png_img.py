@@ -47,9 +47,11 @@ def nii2png_path(img, save_path):  # 所有图像同一个文件夹
 
 
 if __name__ == '__main__':
-    img_path = r'G:\CT2CECT\ct'
-    save_path = r'F:\my_code\cyclegan\data\CT2CECT\train\A'
+    img_path = r'G:\CT2CECT\cect'
+    save_path = r'F:\my_code\cyclegan\data\CT2CECT\train\B'
     img_list = get_listdir(img_path)
     img_list.sort()
     for i in trange(len(img_list)):
-        nii2png(img_list[i], save_path)
+        # nii2png(img_list[i], save_path)
+        nii2png_path(img_list[i], save_path)
+
