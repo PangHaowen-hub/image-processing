@@ -32,8 +32,8 @@ def normalization(img_path, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'G:\lobe_registration\LL\before\rigid_resample_pad'
-    save_path = r'G:\lobe_registration\LL\before\rigid_resample_pad_norm'
+    img_path = r'G:\CT2CECT\registration\moving_v_resample_norm'
+    save_path = r'G:\CT2CECT\registration\moving_v_resample_norm'
     img_list = get_listdir(img_path)
     img_list.sort()
     for i in tqdm.tqdm(img_list):
