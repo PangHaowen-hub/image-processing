@@ -14,7 +14,7 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    l_mask_path = r'G:\CT2CECT\cect'
+    l_mask_path = r'G:\CT2CECT\registration\data\ncct'
     l_mask = get_listdir(l_mask_path)
     l_mask.sort()
     shape = []

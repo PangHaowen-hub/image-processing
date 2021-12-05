@@ -14,16 +14,16 @@ def get_listdir(path):
     return tmp_list
 
 
-def delete_label(img, save_path):
+def raw2nii(img, save_path):
     itkimage = sitk.ReadImage(img)  # 读取.mhd文件
     _, fullflname = os.path.split(img)
     sitk.WriteImage(itkimage, os.path.join(save_path, fullflname[:-4] + '.nii.gz'))
 
 
 if __name__ == '__main__':
-    img_path = r'G:\EMPIRE10\lung_mask'
-    save_path = r'G:\EMPIRE10\lung_mask_nii'
+    img_path = r'G:\dir-lab\copd\copd1'
+    save_path = r'G:\dir-lab\copd\copd1'
     img_list = get_listdir(img_path)
     for i in tqdm.tqdm(img_list):
-        delete_label(i, save_path)
+        raw2nii(img_path, save_path)
 

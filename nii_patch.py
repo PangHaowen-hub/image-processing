@@ -50,8 +50,8 @@ class test_dataset(data.Dataset):
 
 if __name__ == '__main__':
     batch_size = 1
-    source_test_dir = r'G:\CT2CECT\registration\moving_a_resample_norm'
-    save_path = r'G:\CT2CECT\registration\moving_a_resample_norm_patch'
+    source_test_dir = r'G:\CT2CECT\registration\moving_v_resample_norm'
+    save_path = r'G:\CT2CECT\registration\moving_v_resample_norm_patch'
     dataset = test_dataset(source_test_dir)
     patch_overlap = 128, 128, 128
     patch_size = 256
