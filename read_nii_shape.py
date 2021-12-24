@@ -14,15 +14,30 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    l_mask_path = r'G:\CT2CECT\registration\data\ncct'
+    l_mask_path = r'F:\data\Train_Masks_nii'
+    img_path = r'F:\data\Train_nii'
+
     l_mask = get_listdir(l_mask_path)
     l_mask.sort()
+
+    img = get_listdir(img_path)
+    img.sort()
     shape = []
-    for i in l_mask:
-        sitk_img = sitk.ReadImage(i)
+    Spacing = []
+    for i in range(len(l_mask)):
+        sitk_mask = sitk.ReadImage(l_mask[i])
+        sitk_img = sitk.ReadImage(img[i])
+
+        mask_arr = sitk.GetArrayFromImage(sitk_mask)
         img_arr = sitk.GetArrayFromImage(sitk_img)
-        shape.append(img_arr.shape)
-        print(i)
+
+        print(mask_arr.shape)
         print(img_arr.shape)
-        # print(sitk_img.GetSpacing())
+
+    #     shape.append(img_arr.shape)
+    #     Spacing.append(sitk_img.GetSpacing())
+    #     print(i)
+    #     print(img_arr.shape)
+    #     print(sitk_img.GetSpacing())
+    # print(min(shape))
     # print(max(shape))
