@@ -14,30 +14,19 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    l_mask_path = r'F:\data\Train_Masks_nii'
-    img_path = r'F:\data\Train_nii'
-
-    l_mask = get_listdir(l_mask_path)
-    l_mask.sort()
+    img_path = r'H:\CT2CECT\registration\data\cect_a_lung_resample_norm'
 
     img = get_listdir(img_path)
     img.sort()
     shape = []
     Spacing = []
-    for i in range(len(l_mask)):
-        sitk_mask = sitk.ReadImage(l_mask[i])
+    for i in range(len(img)):
         sitk_img = sitk.ReadImage(img[i])
-
-        mask_arr = sitk.GetArrayFromImage(sitk_mask)
         img_arr = sitk.GetArrayFromImage(sitk_img)
-
-        print(mask_arr.shape)
         print(img_arr.shape)
+        shape.append(img_arr.shape)
+        Spacing.append(sitk_img.GetSpacing())
+        # print(sitk_img.GetSpacing())
+    print(min(shape))
+    print(max(shape))
 
-    #     shape.append(img_arr.shape)
-    #     Spacing.append(sitk_img.GetSpacing())
-    #     print(i)
-    #     print(img_arr.shape)
-    #     print(sitk_img.GetSpacing())
-    # print(min(shape))
-    # print(max(shape))

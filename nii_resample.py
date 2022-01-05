@@ -22,7 +22,7 @@ def resample(img_path, save_path):
     # 设置插值方式
     resample.SetInterpolator(sitk.sitkLinear)
     # 默认像素值
-    resample.SetDefaultPixelValue(0)
+    resample.SetDefaultPixelValue(-1000)
     newspacing = [0.8, 0.8, 0.8]
     resample.SetOutputSpacing(newspacing)
     resample.SetOutputOrigin(mask_sitk_img.GetOrigin())
@@ -36,8 +36,8 @@ def resample(img_path, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'G:\CT2CECT\registration\moving_v'
-    save_path = r'G:\CT2CECT\registration\moving_v_resample_norm'
+    img_path = r'H:\CT2CECT\registration\data\cect_a_lung'
+    save_path = r'H:\CT2CECT\registration\data\cect_a_lung_resample'
     img_list = get_listdir(img_path)
     img_list.sort()
     for i in tqdm.tqdm(img_list):

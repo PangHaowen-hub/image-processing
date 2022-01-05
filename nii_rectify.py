@@ -28,9 +28,9 @@ def add_label(img, mask, path):
 
 # 修正3d slicer不能读取的mask
 if __name__ == '__main__':
-    img_path = r'J:\data_syyxy\data2\data2_nii'
-    mask_path = r'J:\data_syyxy\data2\data2_lung'
-    save_path = r'J:\data_syyxy\data2\data2_lung_rectify'
+    img_path = r'G:\wmh_vessel\img'
+    mask_path = r'G:\wmh_vessel\mask'
+    save_path = r'G:\wmh_vessel\mask'
     img = get_listdir(img_path)
     mask = get_listdir(mask_path)
     img.sort()

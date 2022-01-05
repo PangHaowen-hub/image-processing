@@ -13,8 +13,8 @@ password_input = driver.find_element_by_id("pd")
 print('Searching connect')
 login_button = driver.find_element_by_id("index_login_btn")
 print('Find connect successfully')
-username_input.send_keys('2071231')  # username_input为登录账号
-password_input.send_keys('phw15963')  # password_input为登录密码
+username_input.send_keys('')  # username_input为登录账号
+password_input.send_keys('')  # password_input为登录密码
 time.sleep(10)
 print('Input user info')
 login_button.click()

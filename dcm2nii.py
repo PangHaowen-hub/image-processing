@@ -37,10 +37,9 @@ def dcm_nii(ct_path, save_path):
 if __name__ == '__main__':
 
     # 原始数据，不能有中文
-    main_path = r'F:\my_code\ISICDM2021\test\CT\dcm'
-    save_path = r'F:\my_code\ISICDM2021\test\CT\dcm\nii'
+    main_path = r'C:\Users\user\Desktop\temp'
+    save_path = r'I:\paper\1-lungCT\niifile\COPD\yxy'
     ct_path = get_ct_file(main_path)
     ct_path.sort()
-
     for i in trange(len(ct_path)):
         dcm_nii(ct_path[i], save_path)
