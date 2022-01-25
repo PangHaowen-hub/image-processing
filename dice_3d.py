@@ -29,7 +29,7 @@ def dice_3d(mask_path, pred_path, label):
     denominator = np.sum(mask_img_arr) + np.sum(pred_img_arr)
     numerator = 2 * np.sum(mask_img_arr * pred_img_arr)
     dice = numerator / denominator
-    # print(dice)
+    print(dice)
     return dice
 
 
@@ -51,14 +51,14 @@ def dice_3d_lung(mask_path, pred_path):
 
 
 if __name__ == '__main__':
-    mask_path = r'G:\my_lobe_data\after-before\LL\mask'
-    pred_path = r'G:\my_lobe_data\after-before\LL'
+    mask_path = r'F:\my_code\pix2pix_3d_pretrain\val\phw_test\temp\mask'
+    pred_path = r'F:\my_code\pix2pix_3d_pretrain\val\phw_test\temp'
     mask = get_listdir(mask_path)
     mask.sort()
     pred = get_listdir(pred_path)
     pred.sort()
     dice = 0
     for i in trange(len(mask)):
-        dice += dice_3d(mask[i], pred[i], 5)
+        dice += dice_3d(mask[i], pred[i], 1)
         # dice_3d_lung(mask[i], pred[i])
     print(dice / len(mask))

@@ -14,13 +14,13 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    img_path = r'H:\CT2CECT\registration\data\cect_a_lung_resample_norm'
+    img_path = r'H:\CT2CECT\registration\data\cect_a'
 
     img = get_listdir(img_path)
     img.sort()
     shape = []
     Spacing = []
-    for i in range(len(img)):
+    for i in range(30, len(img)):
         sitk_img = sitk.ReadImage(img[i])
         img_arr = sitk.GetArrayFromImage(sitk_img)
         print(img_arr.shape)
@@ -29,4 +29,3 @@ if __name__ == '__main__':
         # print(sitk_img.GetSpacing())
     print(min(shape))
     print(max(shape))
-
