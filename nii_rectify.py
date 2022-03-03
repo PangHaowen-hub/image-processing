@@ -13,7 +13,7 @@ def get_listdir(path):  # 获取目录下所有png格式文件的地址，返回
     return tmp_list
 
 
-def add_label(img, mask, path):
+def img_rectity(img, mask, path):
     img_sitk_img = sitk.ReadImage(img)
     mask_sitk_img = sitk.ReadImage(mask)
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
@@ -28,12 +28,12 @@ def add_label(img, mask, path):
 
 # 修正3d slicer不能读取的mask
 if __name__ == '__main__':
-    img_path = r'C:\Users\user\Desktop\temp1'
-    mask_path = r'C:\Users\user\Desktop\temp'
-    save_path = r'C:\Users\user\Desktop'
+    img_path = r'C:\Users\user\Desktop\temp1'  # img路径
+    mask_path = r'C:\Users\user\Desktop\temp'  # mask路径
+    save_path = r'C:\Users\user\Desktop'  # 保存路径
     img = get_listdir(img_path)
     mask = get_listdir(mask_path)
     img.sort()
     mask.sort()
     for i in tqdm.trange(len(mask)):
-        add_label(img[i], mask[i], save_path)
+        img_rectity(img[i], mask[i], save_path)
