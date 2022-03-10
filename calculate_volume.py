@@ -31,11 +31,11 @@ def volume(mask):
 
 
 if __name__ == '__main__':
-    mask_path = r'H:\my_lobe_data\lobectomy_classification\dalian2_mask\after'
+    mask_path = r'H:\my_lobe_data\lobectomy_classification\dalian_mask'
     mask_list = get_listdir(mask_path)
     mask_list.sort()
     workbook = xlwt.Workbook(encoding='utf-8')  # 创建一个workbook 设置编码
-    worksheet = workbook.add_sheet('after_DL2')  # 创建一个worksheet
+    worksheet = workbook.add_sheet('after_DL')  # 创建一个worksheet
     for i in tqdm.trange(len(mask_list)):
         lobe1, lobe2, lobe3, lobe4, lobe5 = volume(mask_list[i])
 
@@ -46,4 +46,4 @@ if __name__ == '__main__':
         worksheet.write(i, 4, label=lobe4)
         worksheet.write(i, 5, label=lobe5)
 
-    workbook.save(r'H:\my_lobe_data\lobectomy_classification\after_DL2.xls')  # 保存
+    workbook.save(r'H:\my_lobe_data\lobectomy_classification\after_DL.xls')  # 保存

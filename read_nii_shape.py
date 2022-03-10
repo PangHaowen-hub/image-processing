@@ -14,13 +14,13 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    img_path = r'H:\CT2CECT\registration\data\cect_a'
+    img_path = r'H:\my_lobe_data\lobectomy_classification\train_test_mask\0'
 
     img = get_listdir(img_path)
     img.sort()
     shape = []
     Spacing = []
-    for i in range(30, len(img)):
+    for i in range(len(img)):
         sitk_img = sitk.ReadImage(img[i])
         img_arr = sitk.GetArrayFromImage(sitk_img)
         print(img_arr.shape)
