@@ -36,8 +36,8 @@ def dcm_nii(ct_path, save_path):
 
 if __name__ == '__main__':
     # 原始数据，不能有中文
-    main_path = r'H:\CT2CECT\registration\20220115\06-10\040'
-    save_path = r'H:\CT2CECT\registration\20220115\06-10\040'
+    main_path = r'C:\Users\user\Desktop\temp'
+    save_path = r'C:\Users\user\Desktop\temp'
     ct_path = get_ct_file(main_path)
     ct_path.sort()
     for i in trange(len(ct_path)):

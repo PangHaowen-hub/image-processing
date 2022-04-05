@@ -19,10 +19,10 @@ def add_label(mask, save_path):
     temp = copy.deepcopy(mask_img_arr)
     # if 6 in mask_img_arr:
     mask_img_arr[temp != 0] = 1
-    # mask_img_arr[temp == 2] = 3
-    # mask_img_arr[temp == 3] = 4
-    # mask_img_arr[temp == 4] = 5
-    # mask_img_arr[temp == 5] = 5
+    # mask_img_arr[temp == 2] = 0
+    # mask_img_arr[temp == 3] = 0
+    # mask_img_arr[temp == 4] = 1
+    # mask_img_arr[temp == 5] = 2
 
     new_mask_img = sitk.GetImageFromArray(mask_img_arr)
     new_mask_img.SetDirection(mask_sitk_img.GetDirection())
@@ -33,8 +33,8 @@ def add_label(mask, save_path):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_code\pix2pix_3d_pretrain\val_unresample\lungmask'
-    save_path = r'F:\my_code\pix2pix_3d_pretrain\val_unresample\lungmask'
+    mask_path = r'F:\my_code\lobectomy_classification\CNN\data_1\test\4'
+    save_path = r'F:\my_code\lobectomy_classification\CNN\data_1\test\4'
     mask_list = get_listdir(mask_path)
     mask_list.sort()
     for i in tqdm.tqdm(mask_list):

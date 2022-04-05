@@ -20,7 +20,7 @@ def pad(img_path, save_path):
     img_arr = sitk.GetArrayFromImage(sitk_img)
 
     img_arr = np.expand_dims(img_arr, axis=0)
-    pad_transform = tio.transforms.CropOrPad((160, 160, 160), padding_mode=-1024)  # TODO:修改Padding值
+    pad_transform = tio.transforms.Resize(target_shape=(64, 64, 64), image_interpolation='nearest')
     new_arr = pad_transform(img_arr)
     new_arr = np.squeeze(new_arr, 0)
     new_img = sitk.GetImageFromArray(new_arr)
@@ -32,8 +32,8 @@ def pad(img_path, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'H:\my_lobe_data\lobectomy_classification\train_test_img\1'
-    save_path = r'H:\my_lobe_data\lobectomy_classification\train_test_img\1'
+    img_path = r'F:\my_code\lobectomy_classification\ML\data_64\1'
+    save_path = r'F:\my_code\lobectomy_classification\ML\data_64\1'
     img_list = get_listdir(img_path)
     img_list.sort()
     for i in tqdm.tqdm(img_list):
