@@ -28,9 +28,9 @@ def add_label(img, mask, savepath):
 
 
 if __name__ == '__main__':
-    img_path = r'C:\Users\user\Desktop\temp\nii'
-    mask_path = r'C:\Users\user\Desktop\temp\mask'
-    save_path = r'C:\Users\user\Desktop\temp\nii_lung'
+    img_path = r'E:\registration_e2i\instances\i'
+    mask_path = r'E:\registration_e2i\instances\i_lung_mask'
+    save_path = r'E:\registration_e2i\instances\i_lung'
     img_list = get_listdir(img_path)
     img_list.sort()
     mask_list = get_listdir(mask_path)
