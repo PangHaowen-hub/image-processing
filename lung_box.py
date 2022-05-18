@@ -2,6 +2,7 @@ import SimpleITK as sitk
 import os
 import numpy as np
 import tqdm
+import copy
 
 
 def get_listdir(path):
@@ -13,15 +14,16 @@ def get_listdir(path):
     return tmp_list
 
 
-def crop(img_path, mask_path, save_path):
+def crop(img_path, mask_path, img_save_path, mask_save_path):
     img_sitk = sitk.ReadImage(img_path)
     img_arr = sitk.GetArrayFromImage(img_sitk)
     mask_sitk = sitk.ReadImage(mask_path)
     mask_arr = sitk.GetArrayFromImage(mask_sitk)
-    img_arr[mask_arr != 4] = 0
+    tem_arr = copy.deepcopy(img_arr)
+    tem_arr[mask_arr == 0] = 0
     print(img_arr.shape, end=" ")
     for axis in [0, 1, 2]:
-        sums = np.sum(np.sum(img_arr, axis=axis), axis=(axis + 1) % 2)
+        sums = np.sum(np.sum(tem_arr, axis=axis), axis=(axis + 1) % 2)
 
         # Track all =0 layers from front from that axis
         remove_front_index = 0
@@ -38,24 +40,37 @@ def crop(img_path, mask_path, save_path):
             img_arr, list(range(remove_front_index - 1)) + list(range(remove_back_index + 2, len(sums))),
             axis=(axis + 1) % 3
         )
-        validation_sums = np.sum(np.sum(img_arr, axis=axis), axis=(axis + 1) % 2)
+
+        mask_arr = np.delete(
+            mask_arr, list(range(remove_front_index - 1)) + list(range(remove_back_index + 2, len(sums))),
+            axis=(axis + 1) % 3
+        )
         print(" -> ", img_arr.shape, end=" ")
-    img_arr[img_arr == 0] = -1024
+
+    _, fullflname = os.path.split(img_path)
+
     new_img = sitk.GetImageFromArray(img_arr)
     new_img.SetDirection(img_sitk.GetDirection())
     new_img.SetOrigin(img_sitk.GetOrigin())
     new_img.SetSpacing(img_sitk.GetSpacing())
-    _, fullflname = os.path.split(img_path)
-    sitk.WriteImage(new_img, os.path.join(save_path, fullflname))
+    sitk.WriteImage(new_img, os.path.join(img_save_path, fullflname))
+
+    new_mask = sitk.GetImageFromArray(mask_arr)
+    new_mask.SetDirection(img_sitk.GetDirection())
+    new_mask.SetOrigin(img_sitk.GetOrigin())
+    new_mask.SetSpacing(img_sitk.GetSpacing())
+    sitk.WriteImage(new_mask, os.path.join(mask_save_path, fullflname))
 
 
 if __name__ == '__main__':
     img_path = r'H:\CT2CECT\pix2pix\data\cect_a'
     mask_path = r'H:\CT2CECT\pix2pix\data\cect_a_lungmask'
-    save_path = r'H:\CT2CECT\pix2pix\data\cect_a_lungbox'
+    img_save_path = r'H:\CT2CECT\pix2pix\data\cect_a_lungbox'
+    mask_save_path = r'H:\CT2CECT\pix2pix\data\cect_a_lungmask_lungbox'
+
     l_img = get_listdir(img_path)
     l_img.sort()
     l_mask = get_listdir(mask_path)
     l_mask.sort()
     for i in tqdm.trange(len(l_img)):
-        crop(l_img[i], l_mask[i], save_path)
+        crop(l_img[i], l_mask[i], img_save_path, mask_save_path)

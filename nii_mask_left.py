@@ -20,6 +20,7 @@ def add_label(mask, final_mask_path):
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
     # LL:4  LU:5
     mask_img_arr[mask_img_arr == 4] = 5
+    # mask_img_arr[mask_img_arr == 5] = 4
     # mask_img_arr[mask_img_arr == 2] = 3
     # mask_img_arr[mask_img_arr == 1] = 2
     new_mask_img = sitk.GetImageFromArray(mask_img_arr)
@@ -31,8 +32,8 @@ def add_label(mask, final_mask_path):
 
 
 if __name__ == '__main__':
-    mask_path = r'D:\my_code\segmentation_3d\data\images\test\after\LU'
-    final_mask_path = r'D:\my_code\segmentation_3d\data\images\test\after\LU'
+    mask_path = r'G:\Lobectomy\dalian2\LUL\after\mask'
+    final_mask_path = r'G:\Lobectomy\dalian2\LUL\after\mask'
 
     mask = get_listdir(mask_path)
     mask.sort()

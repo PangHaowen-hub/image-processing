@@ -17,7 +17,8 @@ def add_label(l_mask, r_mask, add_mask_path):
     l_mask_img_arr = sitk.GetArrayFromImage(l_mask_sitk_img)
     r_mask_sitk_img = sitk.ReadImage(r_mask)
     r_mask_img_arr = sitk.GetArrayFromImage(r_mask_sitk_img)
-    r_mask_img_arr[l_mask_img_arr == 0] = 0
+    r_mask_img_arr[l_mask_img_arr == 4] = 4
+    r_mask_img_arr[l_mask_img_arr == 5] = 5
     new_mask_img = sitk.GetImageFromArray(r_mask_img_arr)
     new_mask_img.SetDirection(r_mask_sitk_img.GetDirection())
     new_mask_img.SetOrigin(r_mask_sitk_img.GetOrigin())
@@ -27,9 +28,9 @@ def add_label(l_mask, r_mask, add_mask_path):
 
 
 if __name__ == '__main__':
-    l_mask_path = r'G:\wmh_vessel\lungmask'
-    r_mask_path = r'G:\wmh_vessel\mask'
-    add_mask_path = r'G:\wmh_vessel\mask_post'
+    l_mask_path = r'G:\Lobectomy\dalian2\RUL_select\after\mask_L'
+    r_mask_path = r'G:\Lobectomy\dalian2\RUL_select\after\mask_R'
+    add_mask_path = r'G:\Lobectomy\dalian2\RUL_select\after\mask'
     l_mask = get_listdir(l_mask_path)
     l_mask.sort()
     r_mask = get_listdir(r_mask_path)
