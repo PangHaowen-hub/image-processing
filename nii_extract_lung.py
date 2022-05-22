@@ -17,7 +17,7 @@ def add_label(img, mask, savepath):
     img_arr = sitk.GetArrayFromImage(sitk_img)
     sitk_mask = sitk.ReadImage(mask)
     mask_arr = sitk.GetArrayFromImage(sitk_mask)
-    img_arr[mask_arr == 0] = -1025  # TODO:修改此处
+    img_arr[mask_arr == 0] = 0  # TODO:修改此处
     # img_arr[mask_arr == 0] = 0
 
     new_img = sitk.GetImageFromArray(img_arr)
@@ -29,9 +29,9 @@ def add_label(img, mask, savepath):
 
 
 if __name__ == '__main__':
-    img_path = r'G:\gz_data\PRM\59_cases_nii\59_cases_nii_i'
-    mask_path = r'G:\gz_data\PRM\59_cases_nii\59_cases_nii_i_lungmask'
-    save_path = r'G:\gz_data\PRM\59_cases_nii\59_cases_nii_i_lung'
+    img_path = r'H:\gz_DECT\segmentation_test\AA'
+    mask_path = r'H:\gz_DECT\segmentation_test\lungmask'
+    save_path = r'H:\gz_DECT\segmentation_test\AA'
     img_list = get_listdir(img_path)
     img_list.sort()
     mask_list = get_listdir(mask_path)

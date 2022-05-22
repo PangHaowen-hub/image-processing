@@ -21,9 +21,9 @@ def raw2nii(img, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'G:\dir-lab\copd\copd1'
-    save_path = r'G:\dir-lab\copd\copd1'
+    img_path = r'H:\vessel12'
+    save_path = r'H:\vessel12'
     img_list = get_listdir(img_path)
     for i in tqdm.tqdm(img_list):
-        raw2nii(img_path, save_path)
+        raw2nii(i, save_path)
 
