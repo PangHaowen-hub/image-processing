@@ -29,9 +29,9 @@ def add_label(img, mask, savepath):
 
 
 if __name__ == '__main__':
-    img_path = r'H:\gz_DECT\segmentation_test\AA'
-    mask_path = r'H:\gz_DECT\segmentation_test\lungmask'
-    save_path = r'H:\gz_DECT\segmentation_test\AA'
+    img_path = r'H:\CT2CECT\segmentation_test\lz\3'
+    mask_path = r'H:\CT2CECT\segmentation_test\lz'
+    save_path = r'H:\CT2CECT\segmentation_test\lz\3'
     img_list = get_listdir(img_path)
     img_list.sort()
     mask_list = get_listdir(mask_path)
