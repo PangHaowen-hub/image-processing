@@ -3,7 +3,7 @@ import shutil
 import tqdm
 
 
-def get_listdir(path):  # 获取目录下所有png格式文件的地址，返回地址list
+def get_listdir(path):
     tmp_list = []
     for file in os.listdir(path):
         if os.path.splitext(file)[1] == '.gz':
@@ -13,9 +13,9 @@ def get_listdir(path):  # 获取目录下所有png格式文件的地址，返回
 
 
 if __name__ == '__main__':
-    img_path = r'G:\parse2022\train'
-    image_save_path = r'G:\parse2022\image'
-    label_save_path = r'G:\parse2022\label'
+    img_path = r'G:\parse2022\test'
+    image_save_path = r'G:\parse2022\image_test'
+    label_save_path = r'G:\parse2022\label_test'
 
     img_list = os.listdir(img_path)
     img_list.sort()

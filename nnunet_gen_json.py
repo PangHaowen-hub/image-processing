@@ -12,7 +12,9 @@ if __name__ == '__main__':
 
     output_file = r'/disk1/panghaowen/nnUNet-master/nnUNet_raw_data_base/nnUNet_raw_data/Task123_parse2022/dataset.json'
     imagesTr_dir = r'/disk1/panghaowen/nnUNet-master/nnUNet_raw_data_base/nnUNet_raw_data/Task123_parse2022/imagesTr'
-    imagesTs_dir = r'/disk1/panghaowen/nnUNet-master/nnUNet_raw_data_base/nnUNet_raw_data/Task123_parse2022/imagesTs'
+    # imagesTs_dir = r'/disk1/panghaowen/nnUNet-master/nnUNet_raw_data_base/nnUNet_raw_data/Task123_parse2022/imagesTs'
+    imagesTs_dir = None
+
     modalities = ('CT',)
     labels = {0: 'background', 1: '1', }
     train_identifiers = get_identifiers_from_splitted_files(imagesTr_dir)
@@ -35,9 +37,7 @@ if __name__ == '__main__':
     json_dict['numTraining'] = len(train_identifiers)
     json_dict['numTest'] = len(test_identifiers)
     json_dict['training'] = [
-        {'image': "./imagesTr/%s.nii.gz" % i, "label": "./labelsTr/%s.nii.gz" % i} for i
-        in
-        train_identifiers]
+        {'image': "./imagesTr/%s.nii.gz" % i, "label": "./labelsTr/%s.nii.gz" % i} for i in train_identifiers]
     json_dict['test'] = ["./imagesTs/%s.nii.gz" % i for i in test_identifiers]
 
     if not output_file.endswith("dataset.json"):
