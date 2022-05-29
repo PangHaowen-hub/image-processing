@@ -19,8 +19,7 @@ def crop(img_path, mask_path, img_save_path, mask_save_path):
     img_arr = sitk.GetArrayFromImage(img_sitk)
     mask_sitk = sitk.ReadImage(mask_path)
     mask_arr = sitk.GetArrayFromImage(mask_sitk)
-    tem_arr = copy.deepcopy(img_arr)
-    tem_arr[mask_arr == 0] = 0
+    tem_arr = copy.deepcopy(mask_arr)
     print(img_arr.shape, end=" ")
     for axis in [0, 1, 2]:
         sums = np.sum(np.sum(tem_arr, axis=axis), axis=(axis + 1) % 2)
@@ -63,10 +62,10 @@ def crop(img_path, mask_path, img_save_path, mask_save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'H:\gz_DECT\VUE'
-    mask_path = r'H:\gz_DECT\lungmask'
-    img_save_path = r'H:\gz_DECT\VUE_lungbox'
-    mask_save_path = r'H:\gz_DECT\lungmask_lungbox'
+    img_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\NCCT'
+    mask_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\lungmask'
+    img_save_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\NCCT_lungbox'
+    mask_save_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\lungmask_lungbox'
 
     l_img = get_listdir(img_path)
     l_img.sort()

@@ -51,8 +51,8 @@ def dice_3d_lung(mask_path, pred_path):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_code\pix2pix_3d_pretrain\val\phw_test\temp\mask'
-    pred_path = r'F:\my_code\pix2pix_3d_pretrain\val\phw_test\temp'
+    mask_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\mask_lungbox'
+    pred_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\SCECT_lungbox_mask'
     mask = get_listdir(mask_path)
     mask.sort()
     pred = get_listdir(pred_path)

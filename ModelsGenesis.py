@@ -80,7 +80,7 @@ def local_pixel_shuffling(x, prob=1.0):
     image_temp = copy.deepcopy(x)
     orig_image = copy.deepcopy(x)
     _, img_rows, img_cols, img_deps = x.shape
-    num_block = 1000
+    num_block = 5000
     for _ in range(num_block):
         block_noise_size_x = random.randint(1, img_rows // 10)
         block_noise_size_y = random.randint(1, img_cols // 10)
@@ -160,16 +160,17 @@ def image_out_painting(x):
 
 
 if __name__ == '__main__':
-    img_path = r'F:\my_code\pix2pix-3d\figure\001_cropped.nii.gz'
-    save_path = r'F:\my_code\pix2pix-3d\figure\001_cropped_new.nii.gz'
+    img_path = r'F:\my_code\pix2pix-3d\figure\modelsgenesis\040_cropped.nii.gz'
+    save_path = r'F:\my_code\pix2pix-3d\figure\modelsgenesis\040_cropped_image_out_painting.nii.gz'
     sitk_img = sitk.ReadImage(img_path)
     img_arr = sitk.GetArrayFromImage(sitk_img)
     img_arr[img_arr > 1000] = 1000
     img_arr[img_arr < -1000] = -1000
     img_arr = (img_arr + 1000) / 2000
-    new_arr = nonlinear_transformation(img_arr)
-    new_arr = local_pixel_shuffling(new_arr)
-    new_arr = image_in_painting(new_arr)
+    # new_arr = nonlinear_transformation(img_arr)
+    # new_arr = local_pixel_shuffling(img_arr)
+    # new_arr = image_in_painting(np.expand_dims(img_arr, 0))
+    new_arr = image_out_painting(np.expand_dims(img_arr, 0))
     new_arr = new_arr.squeeze()
     new_arr = new_arr * 2000 - 1000
     new_img = sitk.GetImageFromArray(new_arr.astype('int16'))
