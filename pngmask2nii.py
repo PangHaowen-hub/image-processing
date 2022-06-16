@@ -35,7 +35,7 @@ def pngmask2nii(mask_path, image_nii_path, save_path):
     for i in trange(len(mask_list)):
         image = Image.open(mask_list[i])
         new_mask[i, :, :] = image
-    new_mask[new_mask == 255] = 1  # TODO: 修改label
+    new_mask[new_mask != 0] = 1  # TODO: 修改label
     new_mask = sitk.GetImageFromArray(new_mask)
     new_mask.SetDirection(sitk_img.GetDirection())
     new_mask.SetSpacing(sitk_img.GetSpacing())
@@ -45,10 +45,12 @@ def pngmask2nii(mask_path, image_nii_path, save_path):
 
 
 if __name__ == '__main__':
-    image_nii_path = r'H:\CT2CECT\segmentation\ISICDM2021\train\dcm\CT'
-    mask_path = r'H:\CT2CECT\segmentation\ISICDM2021\train\vessel\CT'
-    save_path = r'H:\CT2CECT\segmentation\ISICDM2021\train\vessel\CT'
+    image_nii_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\CECT'
+    mask_path = r'H:\CT2CECT\segmentation\ISICDM2021\train\vessel\CTA'
+    save_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\CECT_mask'
     image_nii_list = get_nii(image_nii_path)
+    image_nii_list.sort()
     mask_list = os.listdir(mask_path)
+    mask_list.sort()
     for i in tqdm.trange(len(image_nii_list)):
         pngmask2nii(os.path.join(mask_path, mask_list[i]), image_nii_list[i], save_path)

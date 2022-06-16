@@ -1,5 +1,6 @@
 import SimpleITK as sitk
 import os
+from tqdm import trange
 
 
 def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回地址list
@@ -16,7 +17,8 @@ def add_label(img, mask, save_path):
     mask_sitk = sitk.ReadImage(mask)
     img_arr = sitk.GetArrayFromImage(img_sitk)
     mask_arr = sitk.GetArrayFromImage(mask_sitk)
-    img_arr[mask_arr == 0] = 0  # TODO: 修改此处
+    img_arr[mask_arr == 0] = -1000  # TODO: 修改此处
+    # img_arr[mask_arr == 0] = 0  # TODO: 修改此处
     new_mask_img = sitk.GetImageFromArray(img_arr)
     new_mask_img.SetDirection(img_sitk.GetDirection())
     new_mask_img.SetOrigin(img_sitk.GetOrigin())
@@ -26,12 +28,12 @@ def add_label(img, mask, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\SCECT_lungbox'
-    mask_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\lungmask_lungbox'
-    save_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\nnunet_test'
+    img_path = r'F:\my_code\pix2pix-3d\2022-06-01-18-19-20\segmentation_test\SCECT'
+    mask_path = r'F:\my_code\pix2pix-3d\2022-06-01-18-19-20\segmentation_test\lungmask'
+    save_path = r'F:\my_code\pix2pix-3d\2022-06-01-18-19-20\segmentation_test\nnunet_test\SCECT'
     img_list = get_listdir(img_path)
     mask_list = get_listdir(mask_path)
     img_list.sort()
     mask_list.sort()
-    for i in range(len(img_list)):
+    for i in trange(len(img_list)):
         add_label(img_list[i], mask_list[i], save_path)

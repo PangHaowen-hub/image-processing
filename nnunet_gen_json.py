@@ -10,9 +10,9 @@ def get_identifiers_from_splitted_files(folder: str):
 
 if __name__ == '__main__':
 
-    output_file = r'/disk1/panghaowen/nnUNet-master/nnUNet_raw_data_base/nnUNet_raw_data/Task123_parse2022/dataset.json'
-    imagesTr_dir = r'/disk1/panghaowen/nnUNet-master/nnUNet_raw_data_base/nnUNet_raw_data/Task123_parse2022/imagesTr'
-    # imagesTs_dir = r'/disk1/panghaowen/nnUNet-master/nnUNet_raw_data_base/nnUNet_raw_data/Task123_parse2022/imagesTs'
+    output_file = r'dataset.json'
+    imagesTr_dir = r'./imagesTr'
+
     imagesTs_dir = None
 
     modalities = ('CT',)
@@ -25,7 +25,7 @@ if __name__ == '__main__':
         test_identifiers = []
 
     json_dict = {}
-    json_dict['name'] = 'parse2022'
+    json_dict['name'] = 'SNCCTvessel'
     json_dict['description'] = 'segmentation'
     json_dict['tensorImageSize'] = "3D"
     json_dict['reference'] = 'NEU'

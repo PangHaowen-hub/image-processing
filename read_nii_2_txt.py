@@ -4,17 +4,18 @@ import os
 import numpy as np
 
 
-def get_listdir(path):
+def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回地址list
     tmp_list = []
     for file in os.listdir(path):
         if os.path.splitext(file)[1] == '.gz':
-            tmp_list.append(file[:-9])
+            file_path = os.path.join(path, file)
+            tmp_list.append(file_path)
     return tmp_list
 
 
 if __name__ == '__main__':
-    img_path = r'G:\gz_data\double_gas\image_580_nii\i'
-    save_path = r'G:\gz_data\double_gas\image_580_nii\i.txt'
+    img_path = r'G:\parse2022\image'
+    save_path = r'G:\parse2022\image.txt'
     path_list = get_listdir(img_path)
     path_list.sort()
     for file_name in path_list:

@@ -62,10 +62,10 @@ def crop(img_path, mask_path, img_save_path, mask_save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\NCCT'
-    mask_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\lungmask'
-    img_save_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\NCCT_lungbox'
-    mask_save_path = r'H:\CT2CECT\segmentation_test\ISICDM2021\lungmask_lungbox'
+    img_path = r'H:\CT2CECT\segmentation\dcm\wmh_vessel\mask'
+    mask_path = r'H:\CT2CECT\segmentation\dcm\wmh_vessel\lungmask'
+    img_save_path = r'H:\CT2CECT\segmentation\dcm\wmh_vessel\mask_lungbox'
+    mask_save_path = r'H:\CT2CECT\segmentation\dcm\wmh_vessel\lungmask_lungbox'
 
     l_img = get_listdir(img_path)
     l_img.sort()
