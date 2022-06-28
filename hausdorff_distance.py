@@ -44,6 +44,6 @@ if __name__ == '__main__':
     pred.sort()
     for lobe_index in range(1, 6):
         hd = 0
-        for i in trange(15, len(mask)):
+        for i in trange(len(mask)):
             hd += HD_3d(mask[i], pred[i], lobe_index)
         print(lobe_index, ':', hd / len(mask))

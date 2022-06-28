@@ -3,7 +3,6 @@ import numpy as np
 import os
 from tqdm import trange
 import surface_distance as surfdist
-import math
 
 
 def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回地址list
