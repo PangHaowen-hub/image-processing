@@ -19,10 +19,8 @@ def add_label(mask, final_mask_path):
     mask_sitk_img = sitk.ReadImage(mask)
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
     # LL:4  LU:5
-    mask_img_arr[mask_img_arr == 4] = 5
-    # mask_img_arr[mask_img_arr == 5] = 4
-    # mask_img_arr[mask_img_arr == 2] = 3
-    # mask_img_arr[mask_img_arr == 1] = 2
+    # mask_img_arr[mask_img_arr == 4] = 5
+    mask_img_arr[mask_img_arr == 5] = 4
     new_mask_img = sitk.GetImageFromArray(mask_img_arr)
     new_mask_img.SetDirection(mask_sitk_img.GetDirection())
     new_mask_img.SetSpacing(mask_sitk_img.GetSpacing())
@@ -32,8 +30,8 @@ def add_label(mask, final_mask_path):
 
 
 if __name__ == '__main__':
-    mask_path = r'G:\Lobectomy\dalian2\LUL\after\mask'
-    final_mask_path = r'G:\Lobectomy\dalian2\LUL\after\mask'
+    mask_path = r'G:\Lobectomy\shengjing\LLL_nii\LL_after_test_all'
+    final_mask_path = r'G:\Lobectomy\shengjing\LLL_nii\LL_after_test_all'
 
     mask = get_listdir(mask_path)
     mask.sort()

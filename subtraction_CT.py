@@ -29,12 +29,15 @@ def subtraction_ct(img1, img2, savepath):
 
 
 if __name__ == '__main__':
-    CECT_path = r'H:\CT2CECT\gz_DECT\AA_lungbox'
-    NCCT_path = r'H:\CT2CECT\gz_DECT\VUE_lungbox'
-    save_path = r'H:\CT2CECT\gz_DECT\subtraction_ct'
+    CECT_path = r'H:\CT2CECT\pix2pix\data\registration_ncct2cect_a_lungbox'
+    NCCT_path = r'F:\my_code\NCCT2CECT\pix2pix-2d\cyclegan\pred_cect2ncct\SNCCT_lungbox'
+    save_path = r'F:\my_code\NCCT2CECT\pix2pix-2d\cyclegan\pred_cect2ncct\SNCCT_lungbox\subtraction'
+    os.makedirs(save_path, exist_ok=True)
     CECT_list = get_listdir(CECT_path)
     CECT_list.sort()
     NCCT_list = get_listdir(NCCT_path)
     NCCT_list.sort()
+    CECT_list = CECT_list[30:]
+    NCCT_list = NCCT_list
     for i in trange(len(CECT_list)):
         subtraction_ct(CECT_list[i], NCCT_list[i], save_path)

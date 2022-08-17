@@ -28,9 +28,9 @@ def add_label(img, mask, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'F:\my_code\pix2pix-3d\baseline_dect\2022-06-27-15-51-01\generator_99'
-    mask_path = r'F:\my_code\pix2pix-ct2cect\pix2pix\pred\lungmask_lungbox'
-    save_path = r'F:\my_code\pix2pix-3d\baseline_dect\2022-06-27-15-51-01\generator_99\pred'
+    img_path = r'F:\my_code\NCCT2CECT\pix2pix-2d\pix2pixHD_cect2ncct\pred\SNCCT_lungbox'
+    mask_path = r'F:\my_code\NCCT2CECT\pix2pix-2d\pix2pix_cect2ncct\pred\lungmask_lungbox'
+    save_path = r'F:\my_code\NCCT2CECT\pix2pix-2d\pix2pixHD_cect2ncct\pred\SNCCT_lungbox_extractlung'
     img_list = get_listdir(img_path)
     mask_list = get_listdir(mask_path)
     img_list.sort()
