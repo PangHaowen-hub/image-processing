@@ -1,12 +1,8 @@
-import os
 import SimpleITK as sitk
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 def transposeMask(ct_path, mask_path):
-    # ct_sitk_img = sitk.ReadImage(mask_path)
-
     ct_reader = sitk.ImageSeriesReader()
     dicom_names = ct_reader.GetGDCMSeriesFileNames(ct_path)
     ct_reader.SetFileNames(dicom_names)
@@ -27,9 +23,6 @@ def transposeMask(ct_path, mask_path):
     new_mask_img.SetDirection(ct_sitk_img.GetDirection())
     new_mask_img.SetOrigin(ct_sitk_img.GetOrigin())
     new_mask_img.SetSpacing(ct_sitk_img.GetSpacing())
-    # new_file_path = r'D:\lung_label\label2'
-
-    # writer = sitk.WriteImage(new_mask_img, os.path.join(new_file_path, 'R01123846_lobes_new.nii'))
     writer = sitk.WriteImage(new_mask_img, mask_path[0:-6] + '_transpose.nii.gz')
 
 

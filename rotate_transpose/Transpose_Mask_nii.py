@@ -31,7 +31,6 @@ def transposeMask(ct_path, mask_path):
     new_mask_img.SetDirection(ct_sitk_img.GetDirection())
     new_mask_img.SetOrigin(ct_sitk_img.GetOrigin())
     new_mask_img.SetSpacing(ct_sitk_img.GetSpacing())
-    # sitk.WriteImage(new_mask_img, mask_path[0:-7] + '_transpose.nii.gz')
     sitk.WriteImage(new_mask_img, mask_path)
 
 
