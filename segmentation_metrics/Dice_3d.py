@@ -33,8 +33,8 @@ def dice_3d(mask_path, pred_path, label):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_code\NCCT2CECT\pix2pix-3d-ncct2cect\2022-06-04-21-12-11\segmentation_test\luzong\pred\mask'
-    pred_path = r'F:\my_code\NCCT2CECT\pix2pix-3d-cect2ncct\2022-06-09-17-22-11\nnunet_test\luzong\NCCT'
+    mask_path = r'F:\my_code\NCCT2CECT\pix2pix-3d-cect2ncct\2022-06-09-17-22-11\nnunet_test\luzong\mask'
+    pred_path = r'F:\my_code\NCCT2CECT\pix2pix-3d-cect2ncct\2022-06-09-17-22-11\nnunet_test\luzong\pred_NCCT'
     mask = get_listdir(mask_path)
     mask.sort()
     pred = get_listdir(pred_path)

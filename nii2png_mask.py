@@ -54,10 +54,10 @@ def nii2png(img, mask, save_path_img, save_path_mask):
 
 
 if __name__ == '__main__':
-    img_path = r'F:\my_lobe_data\after\RM\imgs_rename'
-    mask_path = r'F:\my_lobe_data\after\RM\masks_rename'
-    save_path_img = r'D:\my_code\segmentation_3d\data\images\train\after\RML'
-    save_path_mask = r'D:\my_code\segmentation_3d\data\masks\train\after\RML'
+    img_path = r'E:\ZhangTiande\segmentation_data\image'
+    mask_path = r'E:\ZhangTiande\segmentation_data\mask'
+    save_path_img = r'E:\ZhangTiande\Pytorch-UNet-master\data\imgs'
+    save_path_mask = r'E:\ZhangTiande\Pytorch-UNet-master\data\masks'
 
     img_list = get_listdir(img_path)
     img_list.sort()
