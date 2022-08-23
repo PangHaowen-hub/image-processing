@@ -1,8 +1,8 @@
 import os
+import sys
+import argparse
 import itk
 from distutils.version import StrictVersion as VS
-import sys
-
 import tqdm
 
 if VS(itk.Version.GetITKVersion()) < VS("5.0.0"):

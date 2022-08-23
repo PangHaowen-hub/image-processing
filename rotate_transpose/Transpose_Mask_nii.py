@@ -1,7 +1,7 @@
 import SimpleITK as sitk
 import numpy as np
 import os
-
+import tqdm
 
 def get_listdir(path):  # 获取目录下所有png格式文件的地址，返回地址list
     tmp_list = []
@@ -35,9 +35,9 @@ def transposeMask(ct_path, mask_path):
 
 
 if __name__ == '__main__':
-    img_path = r'C:\Users\Administrator\Desktop\img'
-    mask_path = r'C:\Users\Administrator\Desktop\mask'
+    img_path = r'H:\CT2CECT\Pulmonary_embolism\segmentation\image\cect_a'
+    mask_path = r'H:\CT2CECT\Pulmonary_embolism\segmentation\mask'
     ct = get_listdir(img_path)
     mask = get_listdir(mask_path)
-    for i in range(len(ct)):
+    for i in tqdm.trange(27, len(ct)):
         transposeMask(ct[i], mask[i])

@@ -36,8 +36,8 @@ def dcm_nii(ct_path, save_path):
 
 if __name__ == '__main__':
     # 原始数据，不能有中文
-    main_path = r'H:\CT2CECT\segmentation\ISICDM2021\train\dcm\CT'
-    save_path = r'H:\CT2CECT\segmentation\ISICDM2021\train\dcm\CT'
+    main_path = r'H:\CT2CECT\Pulmonary_embolism\dcm'
+    save_path = r'H:\CT2CECT\Pulmonary_embolism\nii\cect_v'
     ct_path = get_ct_file(main_path)
     ct_path.sort()
     for i in trange(len(ct_path)):
