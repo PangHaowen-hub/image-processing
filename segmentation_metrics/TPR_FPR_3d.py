@@ -13,7 +13,7 @@ def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回�
     return tmp_list
 
 
-def dice_3d(mask_path, pred_path, label):
+def SP_3d(mask_path, pred_path, label):
     mask_sitk_img = sitk.ReadImage(mask_path)
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
     pred_sitk_img = sitk.ReadImage(pred_path)
@@ -25,21 +25,42 @@ def dice_3d(mask_path, pred_path, label):
     pred_img_arr[pred_img_arr != label] = 0
     pred_img_arr[pred_img_arr == label] = 1
 
-    denominator = np.sum(mask_img_arr) + np.sum(pred_img_arr)
-    numerator = 2 * np.sum(mask_img_arr * pred_img_arr)
-    dice = numerator / denominator
-    print(dice)
-    return dice
+    TP = np.sum(mask_img_arr * pred_img_arr)
+
+    temp = pred_img_arr - mask_img_arr
+    temp[temp == -1] = 0
+    FP = np.sum(temp)
+
+    num = mask_img_arr.size
+    RealP = np.sum(mask_img_arr)
+    RealN = num - RealP
+
+    PredP = np.sum(pred_img_arr)
+    PredN = num - PredP
+
+    TPR = TP / RealP
+    FPR = FP / RealN
+
+    print(TPR)
+    print(FPR)
+
+    return TPR, FPR
 
 
 if __name__ == '__main__':
     mask_path = r'F:\my_code\NCCT2CECT\figure\fig9\gt\mask'
     pred_path = r'F:\my_code\NCCT2CECT\figure\fig9\scect-cect\pred_CoTr'
+
     mask = get_listdir(mask_path)
     mask.sort()
     pred = get_listdir(pred_path)
     pred.sort()
-    dice = 0
+    TPR = 0
+    FPR = 0
     for i in trange(len(mask)):
-        dice += dice_3d(mask[i], pred[i], 1)
-    print(dice / len(mask))
+        temp = SP_3d(mask[i], pred[i], 1)
+        TPR += temp[0]
+        FPR += temp[1]
+
+    print('TPR:', TPR / len(mask))
+    print('FPR:', FPR / len(mask))

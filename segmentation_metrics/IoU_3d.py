@@ -36,8 +36,9 @@ def iou_3d(mask_path, pred_path, label):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_code\NCCT2CECT\pix2pix-3d-cect2ncct\2022-06-09-17-22-11\nnunet_test\luzong\mask'
-    pred_path = r'F:\my_code\NCCT2CECT\pix2pix-3d-cect2ncct\2022-06-09-17-22-11\nnunet_test\luzong\pred_NCCT'
+    mask_path = r'F:\my_code\NCCT2CECT\figure\fig9\gt\mask'
+    pred_path = r'F:\my_code\NCCT2CECT\figure\fig9\scect-cect\pred_CoTr'
+
     mask = get_listdir(mask_path)
     mask.sort()
     pred = get_listdir(pred_path)

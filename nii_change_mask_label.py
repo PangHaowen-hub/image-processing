@@ -33,8 +33,8 @@ def add_label(mask, save_path):
 
 
 if __name__ == '__main__':
-    mask_path = r'E:\mask'
-    save_path = r'E:\mask'
+    mask_path = r'H:\CT2CECT\Pulmonary_embolism\nii\cect_a_lungmask'
+    save_path = r'H:\CT2CECT\Pulmonary_embolism\nii\cect_a_lungmask'
     mask_list = get_listdir(mask_path)
     mask_list.sort()
     for i in tqdm.tqdm(mask_list):
