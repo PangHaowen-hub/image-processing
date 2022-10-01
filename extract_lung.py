@@ -17,8 +17,8 @@ def add_label(img, mask, save_path):
     mask_sitk = sitk.ReadImage(mask)
     img_arr = sitk.GetArrayFromImage(img_sitk)
     mask_arr = sitk.GetArrayFromImage(mask_sitk)
-    img_arr[mask_arr == 0] = -1000  # TODO: 修改此处
-    # img_arr[mask_arr == 0] = 0  # TODO: 修改此处
+    # img_arr[mask_arr == 0] = -1000  # TODO: 修改此处
+    img_arr[mask_arr == 0] = 0  # TODO: 修改此处
     new_mask_img = sitk.GetImageFromArray(img_arr)
     new_mask_img.SetDirection(img_sitk.GetDirection())
     new_mask_img.SetOrigin(img_sitk.GetOrigin())
@@ -28,9 +28,9 @@ def add_label(img, mask, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'F:\my_code\NCCT2CECT\pix2pix-2d\pix2pixHD_cect2ncct\pred\SNCCT_lungbox'
-    mask_path = r'F:\my_code\NCCT2CECT\pix2pix-2d\pix2pix_cect2ncct\pred\lungmask_lungbox'
-    save_path = r'F:\my_code\NCCT2CECT\pix2pix-2d\pix2pixHD_cect2ncct\pred\SNCCT_lungbox_extractlung'
+    img_path = r'H:\PRM\580_cases_nii\e'
+    mask_path = r'H:\PRM\580_cases_nii\e_lungmask'
+    save_path = r'H:\PRM\580_cases_nii\e_lung'
     img_list = get_listdir(img_path)
     mask_list = get_listdir(mask_path)
     img_list.sort()

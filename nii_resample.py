@@ -20,11 +20,11 @@ def resample(img_path, save_path):
     # 设置一个Filter
     resample = sitk.ResampleImageFilter()
     # 设置插值方式
-    # resample.SetInterpolator(sitk.sitkLinear)  # image重采样使用线性插值
-    resample.SetInterpolator(sitk.sitkNearestNeighbor)  # mask重采样使用最近邻插值
+    resample.SetInterpolator(sitk.sitkLinear)  # image重采样使用线性插值
+    # resample.SetInterpolator(sitk.sitkNearestNeighbor)  # mask重采样使用最近邻插值
     # 默认像素值
     resample.SetDefaultPixelValue(0)
-    newspacing = [2, 2, 2]
+    newspacing = [0.6, 0.6, 3]
     resample.SetOutputSpacing(newspacing)
     resample.SetOutputOrigin(mask_sitk_img.GetOrigin())
     resample.SetOutputDirection(mask_sitk_img.GetDirection())
@@ -37,8 +37,8 @@ def resample(img_path, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'F:\my_code\lobectomy_classification\CNN\lobectomy_classification_new\shengjing\RU\RU'
-    save_path = r'F:\my_code\lobectomy_classification\CNN\lobectomy_classification_new\shengjing\RU\RU'
+    img_path = r'F:\my_code\corrfield\data\e'
+    save_path = r'F:\my_code\corrfield\data\e'
     img_list = get_listdir(img_path)
     img_list.sort()
     for i in tqdm.tqdm(img_list):

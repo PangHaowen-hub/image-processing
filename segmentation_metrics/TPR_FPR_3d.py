@@ -49,7 +49,7 @@ def SP_3d(mask_path, pred_path, label):
 
 if __name__ == '__main__':
     mask_path = r'F:\my_code\NCCT2CECT\figure\fig9\gt\mask'
-    pred_path = r'F:\my_code\NCCT2CECT\figure\fig9\scect-cect\pred_CoTr'
+    pred_path = r'F:\my_code\NCCT2CECT\figure\fig9\ncct-ncct\pred_CoTr'
 
     mask = get_listdir(mask_path)
     mask.sort()
