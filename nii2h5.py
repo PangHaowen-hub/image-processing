@@ -142,7 +142,7 @@ if __name__ == '__main__':
     # for i in trange(len(img_list)):
     #     nii2h5(img_list[i], save_path)
 
-    img_path = r'F:\github_code\pytorch-3dunet-master\data\59_cases_h5_i_lung'
+    img_path = r'F:\github_code\pytorch-3dunet-master\data\temp'
     save_path = r'F:\github_code\pytorch-3dunet-master\data'
     img_list = get_h5_list(img_path)
     img_list.sort()
