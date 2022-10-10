@@ -28,9 +28,9 @@ def img_rectity(img, mask, path):
 
 # 修正3d slicer不能读取的mask
 if __name__ == '__main__':
-    img_path = r'C:\Users\user\Desktop\temp1'  # img路径
-    mask_path = r'C:\Users\user\Desktop\temp'  # mask路径
-    save_path = r'C:\Users\user\Desktop'  # 保存路径
+    img_path = r'H:\CT2CECT\segmentation\dcm\wmh_vessel\nc\image'  # img路径
+    mask_path = r'H:\CT2CECT\segmentation\dcm\wmh_vessel\nc\mask'  # mask路径
+    save_path = r'H:\CT2CECT\segmentation\dcm\wmh_vessel\nc\mask1'  # 保存路径
     img = get_listdir(img_path)
     mask = get_listdir(mask_path)
     img.sort()

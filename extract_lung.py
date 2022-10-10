@@ -28,9 +28,9 @@ def add_label(img, mask, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'H:\PRM\580_cases_nii\e'
-    mask_path = r'H:\PRM\580_cases_nii\e_lungmask'
-    save_path = r'H:\PRM\580_cases_nii\e_lung'
+    img_path = r'H:\CT2CECT\segmentation\dcm\wmh_vessel\nc\mask'
+    mask_path = r'H:\CT2CECT\segmentation\dcm\wmh_vessel\nc\image_lungmask'
+    save_path = r'H:\CT2CECT\segmentation\dcm\wmh_vessel\nc\mask_lung'
     img_list = get_listdir(img_path)
     mask_list = get_listdir(mask_path)
     img_list.sort()
