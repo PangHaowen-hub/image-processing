@@ -11,8 +11,8 @@ def get_listdir(path, format):
     return tmp_list
 
 
-path = r'F:\github_code\ResViT-main\datasets\PRM\valB'
-save_path = r'F:\github_code\ResViT-main\datasets\PRM\valB'
+path = r'F:\my_code\NCCT2CECT\ResViT\datasets\NCCT2CECT\valB'
+save_path = r'F:\my_code\NCCT2CECT\ResViT\datasets\NCCT2CECT\valB'
 img_list = get_listdir(path, '.png')
 img_list.sort()
 
