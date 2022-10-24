@@ -35,7 +35,7 @@ if __name__ == '__main__':
     new_mask = np.zeros_like(img_arr)
     for i in trange(len(img_list)):
         image = Image.open(img_list[i])
-        new_mask[i, :, :] = np.asarray(image)[:,:,0] / 255 * 1000 - 1000
+        new_mask[i, :, :] = np.asarray(image)[:, :, 0] / 255 * 1000 - 1000
     new_mask = sitk.GetImageFromArray(new_mask)
     new_mask.SetDirection(sitk_img.GetDirection())
     new_mask.SetSpacing(sitk_img.GetSpacing())

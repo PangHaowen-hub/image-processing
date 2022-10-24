@@ -1,8 +1,6 @@
 import SimpleITK as sitk
 import os
 
-import numpy as np
-
 
 def get_listdir(path):
     tmp_list = []
@@ -14,18 +12,13 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    img_path = r'H:\my_lobe_data\lobectomy_classification\train_test_mask\0'
+    img_path = r'H:\CT2CECT\gz_DECT\AA'
 
     img = get_listdir(img_path)
     img.sort()
-    shape = []
-    Spacing = []
+    shape = 0
     for i in range(len(img)):
         sitk_img = sitk.ReadImage(img[i])
         img_arr = sitk.GetArrayFromImage(sitk_img)
-        print(img_arr.shape)
-        shape.append(img_arr.shape)
-        Spacing.append(sitk_img.GetSpacing())
-        # print(sitk_img.GetSpacing())
-    print(min(shape))
-    print(max(shape))
+        shape += img_arr.shape[0]
+    print(shape)
