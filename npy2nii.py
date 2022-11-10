@@ -1,6 +1,5 @@
 import SimpleITK as sitk
 import os
-from PIL import Image
 import numpy as np
 from tqdm import trange
 
@@ -15,13 +14,13 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    nii_path = r'G:\CT2CECT\ct\ct_015_0000.nii.gz'
-    png_path = r'F:\my_code\cyclegan-ct2cect\images\pred\cect\ct_015'
-    save_path = r'F:\my_code\cyclegan-ct2cect\images\pred\cect'
+    nii_path = r'H:\PRM\59_cases_nii\59_cases_nii_i_lung\YANG_GANG_HONG_20181217001040=29_I.nii.gz'
+    npy_path = r'C:\Users\user\Desktop\save_npy_path\fakeA\YANG_GANG_HONG_20181217001040=29_I.nii.gz00000_fake_A'
+    save_path = r'C:\Users\user\Desktop\save_npy_path\fakeA'
     sitk_img = sitk.ReadImage(nii_path)
     img_arr = sitk.GetArrayFromImage(sitk_img)
 
-    img_list = get_listdir(png_path)
+    img_list = get_listdir(npy_path)
     img_list.sort()
     new_img = np.zeros_like(img_arr)
     for i in trange(len(img_list)):

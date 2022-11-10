@@ -1,7 +1,4 @@
-import SimpleITK as sitk
 import os
-
-import numpy as np
 
 
 def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回地址list

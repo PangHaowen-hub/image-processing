@@ -18,7 +18,7 @@ def crop(img_path, mask_path, save_path):
     img_arr = sitk.GetArrayFromImage(img_sitk)
     mask_sitk = sitk.ReadImage(mask_path)
     mask_arr = sitk.GetArrayFromImage(mask_sitk)
-    img_arr[mask_arr != 4] = 0
+    # img_arr[mask_arr != 0] = 0  # TODO:有问题
     print(img_arr.shape, end=" ")
     for axis in [0, 1, 2]:
         sums = np.sum(np.sum(img_arr, axis=axis), axis=(axis + 1) % 2)
@@ -40,7 +40,7 @@ def crop(img_path, mask_path, save_path):
         )
         validation_sums = np.sum(np.sum(img_arr, axis=axis), axis=(axis + 1) % 2)
         print(" -> ", img_arr.shape, end=" ")
-    img_arr[img_arr == 0] = -1024
+    # img_arr[img_arr == 0] = -1024
     new_img = sitk.GetImageFromArray(img_arr)
     new_img.SetDirection(img_sitk.GetDirection())
     new_img.SetOrigin(img_sitk.GetOrigin())
@@ -50,9 +50,9 @@ def crop(img_path, mask_path, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'H:\CT2CECT\pix2pix\data\cect_a'
-    mask_path = r'H:\CT2CECT\pix2pix\data\cect_a_lungmask'
-    save_path = r'H:\CT2CECT\pix2pix\data\cect_a_lungbox'
+    img_path = r'G:\stroke2022\MICCAI_Stroke_2022\FLAIR'
+    mask_path = r'G:\stroke2022\MICCAI_Stroke_2022\FLAIR'
+    save_path = r'G:\stroke2022\MICCAI_Stroke_2022\FLAIR_crop'
     l_img = get_listdir(img_path)
     l_img.sort()
     l_mask = get_listdir(mask_path)
