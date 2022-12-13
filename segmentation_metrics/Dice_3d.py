@@ -33,13 +33,13 @@ def dice_3d(mask_path, pred_path, label):
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_code\NCCT2CECT\figure\fig8\gt\mask'
-    pred_path = r'F:\my_code\NCCT2CECT\figure\fig8\ncct-ncct-counter\pred_nnunet'
+    mask_path = r'F:\my_code\copd_PRM\pytorch-CycleGAN-and-pix2pix\save_npy\ground_truth\PRM'
+    pred_path = r'F:\my_code\copd_PRM\pytorch-CycleGAN-and-pix2pix\save_npy\cycle_gan_basic_resnet_9blocks\fake_PRM'
     mask = get_listdir(mask_path)
     mask.sort()
     pred = get_listdir(pred_path)
     pred.sort()
     dice = 0
     for i in trange(len(mask)):
-        dice += dice_3d(mask[i], pred[i], 1)
+        dice += dice_3d(mask[i], pred[i], 4)
     print(dice / len(mask))
