@@ -20,8 +20,8 @@ def pad(img_path, save_path):
     img_arr = sitk.GetArrayFromImage(sitk_img)
 
     img_arr = np.expand_dims(img_arr, axis=0)
-    pad_transform = tio.transforms.Resize(target_shape=(64, 64, 64), image_interpolation='nearest')
-    new_arr = pad_transform(img_arr)
+    Resi_transform = tio.transforms.Resize(target_shape=(64, 64, 64), image_interpolation='nearest')
+    new_arr = Resi_transform(img_arr)
     new_arr = np.squeeze(new_arr, 0)
     new_img = sitk.GetImageFromArray(new_arr)
     new_img.SetDirection(sitk_img.GetDirection())

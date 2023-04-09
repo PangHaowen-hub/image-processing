@@ -1,12 +1,21 @@
 from PyPDF2 import PdfFileMerger
+import os
 
-path1 = r'E:\增强非增强配准转换\专利\1.pdf'
-path2 = r'E:\增强非增强配准转换\专利\2.pdf'
+
+def get_listdir(path):
+    tmp_list = []
+    for file in os.listdir(path):
+        if os.path.splitext(file)[1] == '.pdf':
+            file_path = os.path.join(path, file)
+            tmp_list.append(file_path)
+    return tmp_list
+
+
+path = r''
+pdf_list = get_listdir(path)
 
 file_merger = PdfFileMerger()
+for i in pdf_list:
+    file_merger.append(i, import_outline=False)  # 合并pdf文件
 
-file_merger.append(path1, import_outline=False)  # 合并pdf文件
-file_merger.append(path2, import_outline=False)
-
-
-file_merger.write(r"E:\增强非增强配准转换\专利\2021版专利申请表-图像转换-2022-12-12（签字版本）.pdf")
+file_merger.write(r"合并.pdf")
