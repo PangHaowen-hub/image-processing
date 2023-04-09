@@ -5,7 +5,7 @@ import time
 options = Options()
 options.add_argument('-headless')
 driver = webdriver.Firefox(options=options)
-driver.get("https://pass.neu.edu.cn/tpass/login?service=https%3A%2F%2Fipgw.neu.edu.cn%2Fsrun_cas.php%3Fac_id%3D1")
+driver.get("https://pass.neu.edu.cn/")
 time.sleep(8)
 
 username_input = driver.find_element_by_id("un")

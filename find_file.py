@@ -1,7 +1,4 @@
-import SimpleITK as sitk
 import os
-from PIL import Image
-import numpy as np
 from tqdm import trange
 import shutil
 
@@ -18,6 +15,7 @@ def get_listdir(path):
 def find_path(mask_path, save_path):
     _, fullflname = os.path.split(mask_path)
     shutil.copy(os.path.join(mask_path, 'aorta.nii.gz'), os.path.join(save_path, fullflname))
+
 
 if __name__ == '__main__':
     img_path = r'H:\CT2CECT\Pulmonary_embolism\segmentation\mask_all'

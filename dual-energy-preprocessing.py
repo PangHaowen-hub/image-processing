@@ -1,8 +1,4 @@
 import SimpleITK as sitk
-import os
-import copy
-import tqdm
-import numpy as np
 
 low = r'G:\Dual-energyCT\DICOMO\PA0\ST0\SE3.nii.gz'
 high = r'G:\Dual-energyCT\DICOMO\PA0\ST0\SE5.nii.gz'
