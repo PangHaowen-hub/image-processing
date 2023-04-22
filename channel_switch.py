@@ -12,7 +12,7 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    rootdir = 'D:/oral_defense/demo/pic'
+    rootdir = r'F:\my_code\zhanghe\pytorch-CycleGAN-and-pix2pix-master\results\he-GAN\100\images'
     path = get_listdir(rootdir)
     for i in path:
         filename = i

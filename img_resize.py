@@ -1,6 +1,8 @@
 import cv2
 import os
 
+import tqdm
+
 
 def get_listdir(path, format):
     tmp_list = []
@@ -11,12 +13,14 @@ def get_listdir(path, format):
     return tmp_list
 
 
-path = r'F:\github_code\denoising-diffusion-pytorch-main\data\png'
+path = r'F:\my_code\zhanghe\pytorch-CycleGAN-and-pix2pix-master\results\he-GAN\100'
+save_path = r'F:\my_code\zhanghe\pytorch-CycleGAN-and-pix2pix-master\results\he-GAN\100'
+
 img_list = get_listdir(path, '.png')
-desired_size = 1280
-for i in img_list:
+img_list.sort()
+
+for i in tqdm.tqdm(img_list):
     _, fullflname = os.path.split(i)
     im = cv2.imread(i, cv2.IMREAD_GRAYSCALE)
-    im = cv2.resize(im, (128, 128))
-
-    cv2.imwrite(os.path.join(r'F:\github_code\denoising-diffusion-pytorch-main\data\png', fullflname)[:-4] + '.png', im)
+    im = cv2.resize(im, (64, 64))
+    cv2.imwrite(os.path.join(save_path, fullflname), im)
