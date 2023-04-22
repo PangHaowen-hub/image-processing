@@ -13,7 +13,7 @@ def get_listdir(path):  # 获取目录下所有png格式文件的地址，返回
     return tmp_list
 
 
-def add_label(mask, save_path):
+def change_label(mask, save_path):
     mask_sitk_img = sitk.ReadImage(mask)
     mask_img_arr = sitk.GetArrayFromImage(mask_sitk_img)
     temp = copy.deepcopy(mask_img_arr)
@@ -34,4 +34,4 @@ if __name__ == '__main__':
     mask_list = get_listdir(mask_path)
     mask_list.sort()
     for i in tqdm.tqdm(mask_list):
-        add_label(i, save_path)
+        change_label(i, save_path)
