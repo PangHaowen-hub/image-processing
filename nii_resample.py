@@ -37,8 +37,8 @@ def resample(img_path, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'G:\stroke2022\MICCAI_Stroke_2022\FLAIR_crop'
-    save_path = r'G:\stroke2022\MICCAI_Stroke_2022\FLAIR_crop_resample'
+    img_path = r'FLAIR_crop'
+    save_path = r'FLAIR_crop_resample'
     img_list = get_listdir(img_path)
     img_list.sort()
     for i in tqdm.tqdm(img_list):
