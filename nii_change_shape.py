@@ -1,7 +1,5 @@
-import numpy as np
 import os
 import SimpleITK as sitk
-import tqdm
 
 if __name__ == '__main__':
     img_path = r'H:\CT2CECT\registration\data\cect_a\039.nii.gz'

@@ -3,7 +3,7 @@ import tqdm
 import SimpleITK as sitk
 import numpy as np
 
-def get_listdir(path):  # 获取目录下所有png格式文件的地址，返回地址list
+def get_listdir(path):
     tmp_list = []
     for file in os.listdir(path):
         if os.path.splitext(file)[1] == '.gz':
