@@ -17,16 +17,16 @@ def difference(img1_path, img2_path, save_path):
     img2 = sitk.ReadImage(img2_path)
     img2_arr = sitk.GetArrayFromImage(img2)
 
-    diff_img_arr = img1_arr - img2_arr
+    diff_img_arr = 0.5 * img1_arr + 0.5 * img2_arr
 
     diff_img = sitk.GetImageFromArray(diff_img_arr)
     diff_img.CopyInformation(img1)
 
-    sitk.WriteImage(diff_img, os.path.join(save_path, 'difference_100_25.nii.gz'))
+    sitk.WriteImage(diff_img, os.path.join(save_path, 'avg_100_0.nii.gz'))
 
 
 if __name__ == '__main__':
     img1_path = r'C:\Users\40702\Desktop\T1_100_dose.nii.gz'
-    img2_path = r'C:\Users\40702\Desktop\T1_25_dose.nii.gz'
-    save_path = r'C:\Users\40702\Desktop\difference'
+    img2_path = r'C:\Users\40702\Desktop\T1_0_dose.nii.gz'
+    save_path = r'C:\Users\40702\Desktop\weighted_sum'
     difference(img1_path, img2_path, save_path)

@@ -26,8 +26,8 @@ def normalization(img_path, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'F:\my_code\bit_pgan\pGAN_nii_input\data_test\train\20210416_ZHOUBING_055_F_p620'
-    save_path = r'F:\my_code\bit_pgan\pGAN_nii_input\data_test\train\20210416_ZHOUBING_055_F_p620'
+    img_path = r'C:\Users\40702\Desktop\temp'
+    save_path = r'C:\Users\40702\Desktop\temp'
     img_list = get_listdir(img_path)
     img_list.sort()
     for i in tqdm.tqdm(img_list):
