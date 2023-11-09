@@ -12,26 +12,12 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    img_path = r'G:\stroke2022\MICCAI_Stroke_2022\FLAIR'
+    img_path = r'E:\Federated_Learning\FL-DA\data\ZYJ_inter_25_zscore_based_on_T1'
 
-    img = get_listdir(img_path)
+    img = os.listdir(img_path)
     img.sort()
-    shape0 = []
-    shape1 = []
-    shape2 = []
 
-    # Spacing = []
     for i in range(len(img)):
-        sitk_img = sitk.ReadImage(img[i])
+        sitk_img = sitk.ReadImage(os.path.join(img_path, img[i], 'T1_0_dose.nii.gz'))
         img_arr = sitk.GetArrayFromImage(sitk_img)
-        # Spacing.append(sitk_img.GetSpacing())
-        shape0.append(img_arr.shape[0])
-        shape1.append(img_arr.shape[1])
-        shape2.append(img_arr.shape[2])
-
-    shape0.sort()
-    shape1.sort()
-    shape2.sort()
-    print(shape0[249])
-    print(shape1[249])
-    print(shape2[249])
+        print(img_arr.shape)

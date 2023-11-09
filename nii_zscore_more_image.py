@@ -3,11 +3,9 @@ import SimpleITK as sitk
 
 
 if __name__ == '__main__':
-    t1_0_path = r'C:\Users\40702\Desktop\T1_0_dose.nii.gz'
-    t1_low_path = r'C:\Users\40702\Desktop\T1_25_dose.nii.gz'
-    t1_100_path = r'C:\Users\40702\Desktop\T1_100_dose.nii.gz'
-
-    save_path = r'C:\Users\40702\Desktop\temp'
+    t1_0_path = r'C:\Users\40702\Desktop\temp\T1_0_dose.nii.gz'
+    t1_low_path = r'C:\Users\40702\Desktop\temp\T1_10_dose.nii.gz'
+    t1_100_path = r'C:\Users\40702\Desktop\temp\T1_100_dose.nii.gz'
 
     t1_0_img = sitk.ReadImage(t1_0_path)
     t1_low_img = sitk.ReadImage(t1_low_path)

@@ -12,12 +12,12 @@ def get_listdir(path):
     return tmp_list
 
 
-fps = 2
-size = (1280, 720)
+fps = 10
+size = (192, 232)
 fourcc = cv2.VideoWriter_fourcc(*"mp4v")
 
-path = r'.\test_true_norm'
-video_path = './test_true_norm.mp4'
+path = r'D:\my_code\Federated_Learning\image_preprocess\temp\png'
+video_path = r'D:\my_code\Federated_Learning\image_preprocess\temp\test.mp4'
 img_list = get_listdir(path)
 img_list.sort()
 vw = cv2.VideoWriter(video_path, fourcc, fps, size)
