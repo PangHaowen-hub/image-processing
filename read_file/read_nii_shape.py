@@ -12,12 +12,16 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    img_path = r'E:\Federated_Learning\FL-DA\data\ZYJ_inter_25_zscore_based_on_T1'
+    img_path = r'E:\ISICDM2023\data\glioma_sgementation\imageTr'
 
-    img = os.listdir(img_path)
+    img = get_listdir(img_path)
     img.sort()
 
-    for i in range(len(img)):
-        sitk_img = sitk.ReadImage(os.path.join(img_path, img[i], 'T1_0_dose.nii.gz'))
+    for i in img:
+        sitk_img = sitk.ReadImage(i)
         img_arr = sitk.GetArrayFromImage(sitk_img)
+        img_spa = sitk_img.GetSpacing()
+        print(i)
         print(img_arr.shape)
+        print(img_spa)
+

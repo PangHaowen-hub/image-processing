@@ -24,7 +24,7 @@ def resample(img_path, save_path):
     resample.SetInterpolator(sitk.sitkNearestNeighbor)  # mask重采样使用最近邻插值
     # 默认像素值
     resample.SetDefaultPixelValue(0)
-    newspacing = [2.0, 2.0, 2.0]
+    newspacing = [2.0, 2.0, 2.0]  # 重采样目标spacing
     resample.SetOutputSpacing(newspacing)
     resample.SetOutputOrigin(mask_sitk_img.GetOrigin())
     resample.SetOutputDirection(mask_sitk_img.GetDirection())
