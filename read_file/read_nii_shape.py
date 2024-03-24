@@ -1,5 +1,6 @@
 import SimpleITK as sitk
 import os
+import tqdm
 
 
 def get_listdir(path):
@@ -12,16 +13,24 @@ def get_listdir(path):
 
 
 if __name__ == '__main__':
-    img_path = r'E:\ISICDM2023\data\glioma_sgementation\imageTr'
+    img_path = r'/data7/xinruzhang/DATA/TTCA/ZYJ_20220610-rename-nii-cutneck-rigid-regristrate/ZYJ_inter_25'
+    # img_path = r'E:\Federated_Learning\FL-NC2CE\data\origin_ZYJ_AH_25'
 
-    img = get_listdir(img_path)
-    img.sort()
+    img_list = os.listdir(img_path)
+    img_list.sort()
+    shape_list = set()
+    spa_list = set()
 
-    for i in img:
-        sitk_img = sitk.ReadImage(i)
+    for i in tqdm.tqdm(img_list):
+        sitk_img = sitk.ReadImage(os.path.join(img_path, i, "T1_100_dose.nii.gz"))
         img_arr = sitk.GetArrayFromImage(sitk_img)
         img_spa = sitk_img.GetSpacing()
-        print(i)
-        print(img_arr.shape)
-        print(img_spa)
+        shape_list.add(img_arr.shape)
+        spa_list.add(img_spa)
+    shape_list = list(shape_list)
+    shape_list.sort()
+    print(shape_list)
 
+    spa_list = list(spa_list)
+    spa_list.sort()
+    print(spa_list)

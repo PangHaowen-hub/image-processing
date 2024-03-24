@@ -12,7 +12,7 @@ def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回�
 
 
 def down(img_path, save_path):
-    scale = 4  # TODO:采样倍数
+    scale = 2  # TODO:采样倍数
     sitk_img = sitk.ReadImage(img_path)
     img_arr = sitk.GetArrayFromImage(sitk_img)
     new_arr = img_arr[::scale, ::scale, ::scale]
@@ -26,8 +26,8 @@ def down(img_path, save_path):
 
 
 if __name__ == '__main__':
-    nii_path = r'F:\segment_registration\Registration\320_512_512\320_512_512'
-    save_path = r'F:\segment_registration\Registration\320_512_512\80_128_128'
+    nii_path = r'C:\Users\40702\Desktop\temp'
+    save_path = r'C:\Users\40702\Desktop\temp_down'
     l_nii = get_listdir(nii_path)
     l_nii.sort()
     for i in range(len(l_nii)):
