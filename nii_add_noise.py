@@ -16,7 +16,7 @@ def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回�
 def normalization(img_path, save_path):
     sitk_img = sitk.ReadImage(img_path)
     img_arr = sitk.GetArrayFromImage(sitk_img)
-    noise = np.random.normal(0, 10, img_arr.shape)
+    noise = np.random.normal(0, 20, img_arr.shape)
     img_arr = img_arr + noise
     new_img = sitk.GetImageFromArray(img_arr)
     new_img.CopyInformation(sitk_img)
@@ -25,8 +25,8 @@ def normalization(img_path, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'C:\Users\40702\Desktop\temp_resample'
-    save_path = r'C:\Users\40702\Desktop\temp_resample_add_noise'
+    img_path = r'C:\Users\40702\Desktop\20210907_GAOXIANGHUAN_056_F_GAO_XIANG_HUAN_704276_resample_2'
+    save_path = r'C:\Users\40702\Desktop\20210907_GAOXIANGHUAN_056_F_GAO_XIANG_HUAN_704276_resample_2_add_noise'
     img_list = get_listdir(img_path)
     img_list.sort()
     for i in tqdm.tqdm(img_list):

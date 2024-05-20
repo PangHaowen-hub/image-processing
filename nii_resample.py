@@ -24,7 +24,7 @@ def resample(img_path, save_path):
     resample.SetInterpolator(sitk.sitkNearestNeighbor)  # mask重采样使用最近邻插值
     # 默认像素值
     resample.SetDefaultPixelValue(0)
-    newspacing = [1.5, 1.5, 1.5]  # 重采样目标spacing
+    newspacing = [2.0, 2.0, 2.0]  # 重采样目标spacing
     resample.SetOutputSpacing(newspacing)
     resample.SetOutputOrigin(mask_sitk_img.GetOrigin())
     resample.SetOutputDirection(mask_sitk_img.GetDirection())
@@ -37,8 +37,8 @@ def resample(img_path, save_path):
 
 
 if __name__ == '__main__':
-    img_path = r'C:\Users\40702\Desktop\temp'
-    save_path = r'C:\Users\40702\Desktop\temp_resample'
+    img_path = r'C:\Users\40702\Desktop\20210907_GAOXIANGHUAN_056_F_GAO_XIANG_HUAN_704276'
+    save_path = r'C:\Users\40702\Desktop\20210907_GAOXIANGHUAN_056_F_GAO_XIANG_HUAN_704276_resample_2'
     img_list = get_listdir(img_path)
     img_list.sort()
     for i in tqdm.tqdm(img_list):
