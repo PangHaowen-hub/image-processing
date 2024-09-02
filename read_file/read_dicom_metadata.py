@@ -53,7 +53,7 @@ def loadFileInformation(filename):
 
 if __name__ == '__main__':
     allpath = []
-    img_path = r'G:\guanghzou_data\3、双相CT原始图像（dicom格式）\#image（486人次）更新至20201112'
+    img_path = r'C:\Users\40702\Desktop\temp'
     img_list = get_listdir(img_path)
     img_list.sort()
     workbook = xlwt.Workbook(encoding='utf-8')  # 创建一个workbook 设置编码
