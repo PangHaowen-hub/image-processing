@@ -3,6 +3,7 @@ import os
 from PIL import Image
 import numpy as np
 from tqdm import trange
+import nibabel as nib
 
 
 def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回地址list
@@ -15,9 +16,20 @@ def get_listdir(path):  # 获取目录下所有gz格式文件的地址，返回�
 
 
 def nii2png(img, save_path):  # 每个nii一个文件夹
+    img_nib = nib.load(img)
+    affine = img_nib.affine
+    orientation = nib.aff2axcodes(affine)
+
     sitk_img = sitk.ReadImage(img)
     img_arr = sitk.GetArrayFromImage(sitk_img)
-    MIN_BOUND = -1000.0
+    # 预期方向L, P, S, 方向如果不是L, P, S的话就反转矩阵
+    if orientation[0] == 'R':
+        img_arr = img_arr[::-1,:,:]
+    if orientation[1] == 'A':
+        img_arr = img_arr[:,::-1,:]
+    if orientation[2] == 'I':
+        img_arr = img_arr[:,:,::-1]
+    MIN_BOUND = 0.0
     MAX_BOUND = 1000.0
     img_arr[img_arr > MAX_BOUND] = MAX_BOUND
     img_arr[img_arr < MIN_BOUND] = MIN_BOUND
@@ -31,26 +43,10 @@ def nii2png(img, save_path):  # 每个nii一个文件夹
         img_pil.save(os.path.join(path, str(i).rjust(3, '0') + '.png'))
 
 
-def nii2png_path(img, save_path):  # 所有图像同一个文件夹
-    sitk_img = sitk.ReadImage(img)
-    img_arr = sitk.GetArrayFromImage(sitk_img)
-    MIN_BOUND = -1000.0
-    MAX_BOUND = 1000.0
-    img_arr[img_arr > MAX_BOUND] = MAX_BOUND
-    img_arr[img_arr < MIN_BOUND] = MIN_BOUND
-    img_arr = (img_arr - MIN_BOUND) / (MAX_BOUND - MIN_BOUND) * 255
-    _, fullflname = os.path.split(img)
-    for i in range(img_arr.shape[0]):
-        temp = img_arr[i, :, :].astype(np.uint8)
-        img_pil = Image.fromarray(temp)
-        img_pil.save(os.path.join(save_path, fullflname + str(i).rjust(5, '0') + '.png'))
-
-
 if __name__ == '__main__':
-    img_path = r'H:\CT2CECT\pix2pix\data\registration_ncct2cect_a'
-    save_path = r'F:\my_code\NCCT2CECT\ResViT\datasets\NCCT2CECT\valA'
+    img_path = r'C:\Users\40702\Desktop'
+    save_path = r'C:\Users\40702\Desktop'
     img_list = get_listdir(img_path)
     img_list.sort()
     for i in trange(len(img_list)):
-        # nii2png(img_list[i], save_path)
-        nii2png_path(img_list[i], save_path)
+        nii2png(img_list[i], save_path)
