@@ -25,7 +25,7 @@ def change_label(mask):
 
 
 if __name__ == '__main__':
-    mask_path = r'D:\my_code\Federated_Learning\FL-NC2CE\data\origin_ZYJ_inter_25_seg_mask'
+    mask_path = r'C:\Users\40702\Desktop\labelsTr'
     mask_list = get_listdir(mask_path)
     mask_list.sort()
     for mask_name in tqdm.tqdm(mask_list):

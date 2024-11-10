@@ -20,26 +20,32 @@ def dice_3d(mask_path, pred_path, label):
     pred_img_arr = sitk.GetArrayFromImage(pred_sitk_img)
     pred_img_arr = pred_img_arr.astype(np.uint16)
 
-    mask_img_arr[mask_img_arr != label] = 0
-    mask_img_arr[mask_img_arr == label] = 1
-    pred_img_arr[pred_img_arr != label] = 0
-    pred_img_arr[pred_img_arr == label] = 1
+    # mask_img_arr[mask_img_arr != label] = 0
+    # mask_img_arr[mask_img_arr == label] = 1
+    # pred_img_arr[pred_img_arr != label] = 0
+    # pred_img_arr[pred_img_arr == label] = 1
+
+    mask_img_arr[mask_img_arr == 2] = 0
+    pred_img_arr[pred_img_arr == 2] = 0
+
+    mask_img_arr[mask_img_arr != 0] = 1
+    pred_img_arr[pred_img_arr != 0] = 1
 
     denominator = np.sum(mask_img_arr) + np.sum(pred_img_arr)
     numerator = 2 * np.sum(mask_img_arr * pred_img_arr)
-    dice = numerator / denominator
+    dice = numerator / (denominator + 0.000000001)
     print(dice)
     return dice
 
 
 if __name__ == '__main__':
-    mask_path = r'F:\my_code\copd_PRM\pytorch-CycleGAN-and-pix2pix\save_npy\ground_truth\PRM'
-    pred_path = r'F:\my_code\copd_PRM\pytorch-CycleGAN-and-pix2pix\save_npy\cycle_gan_basic_resnet_9blocks\fake_PRM'
+    mask_path = r'C:\Users\40702\Desktop\real'
+    pred_path = r'C:\Users\40702\Desktop\fake'
     mask = get_listdir(mask_path)
     mask.sort()
     pred = get_listdir(pred_path)
     pred.sort()
     dice = 0
     for i in trange(len(mask)):
-        dice += dice_3d(mask[i], pred[i], 4)
+        dice += dice_3d(mask[i], pred[i], 3)
     print(dice / len(mask))
